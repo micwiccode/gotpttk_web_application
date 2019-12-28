@@ -1,0 +1,32 @@
+@import "consts.css";
+
+
+.header {
+  position: fixed;
+  height: var(--header_height);
+  width: 100%;
+  top: 0;
+  background-color: var(--main_color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  z-index: 100;
+}
+
+.header__nav__list {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.header__nav__list__element {
+  margin: 15px;
+  padding: 15px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.header__nav__list__element:last-of-type {
+  border: 2px solid white;
+  border-radius: 10px;
+}

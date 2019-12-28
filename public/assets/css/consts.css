@@ -1,0 +1,7 @@
+:root{
+  --main_color: rgb(10, 162, 152);
+  --main_color_with_alfa: rgba(10, 162, 152, 0.4);
+  --header_height: 13vh;
+  --footer_height: 12vh;
+  --footer_margin: -12vh;
+}

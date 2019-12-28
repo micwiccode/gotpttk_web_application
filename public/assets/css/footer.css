@@ -1,0 +1,20 @@
+@import "consts.css";
+
+
+.footer{
+  clear: both;
+  position: relative;
+  height: var(--footer_height);
+  margin-top: var(--footer_margin);
+  bottom: 0;
+  width: 100%;
+  padding: 20px 6%;
+  background-color: var(--main_color);
+  display: flex;
+  justify-content: space-between;
+  z-index: 100;
+}
+
+.footer__text *{
+  margin: 0;
+}
