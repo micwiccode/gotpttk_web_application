@@ -1,0 +1,26 @@
+@import "consts.css";
+
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1% 0;
+}
+
+.box{
+  width: 85%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white_with_alpha);
+  padding: 5% 0;
+}
+
+.box__route{
+  width: 100%;  
+  height: 200px;
+  margin: 5% 0;
+  background-color: var(--white);
+}
