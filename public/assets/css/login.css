@@ -48,11 +48,13 @@
 
 a.form__err{
   visibility: hidden;
+  font-weight: bold;
   padding-top: 4px;
   color: red;
-  text-shadow: 3px 3px 4px  black;
+  text-shadow: 3px 3px 8px  black;
 }
 
 a.link{
+  margin-top: 20px;
   color: white;
 }
