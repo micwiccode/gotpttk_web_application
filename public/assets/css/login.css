@@ -14,13 +14,45 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--white_with_alpha);
-  padding: 5% 0;
 }
 
 .log__form{
-  width: 100%;  
-  height: 200px;
-  margin: 5% 0;
-  background-color: var(--white);
+  width: 85%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 12px;
+}
+
+.button{
+  border: none;
+  border-radius: 20px;
+  color: var(--white);
+  padding: 10px 30px;
+  font-family: var(--main_font);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.box__button{
+  background-color: var(--black);
+  padding: 8px 30px;
+  margin-top: 8px;
+}
+
+.form__input{
+  border-radius: 20px;
+  padding: 10px 30px;
+}
+
+a.form__err{
+  visibility: hidden;
+  padding-top: 4px;
+  color: red;
+  text-shadow: 3px 3px 4px  black;
+}
+
+a.link{
+  color: white;
 }

@@ -23,20 +23,19 @@
 			{{ include('header.html.twig') }}
 			<div class="container">
 				<div class="content">
-					<h3 class="content__title">Zaloguj się</h3>
 					<div class="box">
-						<div class="log__form">
-                            <form method="post">
-                                Podaj login<br>
-                                <input type="email" name="email" required/><br>
-                                Podaj hasło<br>
-                                <input type="password" name="password" required/><br>
-                                <button type="submit" class="log__button">Zaloguj</button>
+                            <form class="log__form" method="post">
+								<h3>Podaj login</h3><br>
+                                <input type="email" class="form__input" name="email" required/>
+								<a class="form__err" name="emailErr">Login niepoprawny</a>
+                                <h3>Podaj hasło</h3><br>
+                                <input type="password" class="form__input" name="password" required/>
+								<a class="form__err" name="passwordErr">Hasło niepoprawne</a>
+								<a class="form__err" name="loginError">Należy podać login i hasło</a>
+                                <button type="submit" class="button box__button">Zaloguj</button>
                             </form>
-                            <a href='resetPassword'> Zapomniałem hasła </a>
-						</div>
+                            <a class="link" href='resetPassword' > Zapomniałem hasła </a>
 						<div class="box__route"></div>
-						<input type="button" class="box__button" value="Powrot">
 					</div>
 				</div>
 			</div>
