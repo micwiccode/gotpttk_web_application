@@ -21,8 +21,7 @@ body {
   padding: 0;
   padding-top: var(--header_height);
   color: white;
-  font-family: 'Didact Gothic',
-    sans-serif;
+  font-family: var(--main_font)
 }
 
 .container {
