@@ -15,4 +15,12 @@ class LoginController extends AbstractController
   {
     return $this->render('login.html.twig');
   }
+
+  /**
+   * @Route("/resetPassword")
+   */
+  public function resetPassword()
+  {
+    return $this->render('resetPassword.html.twig');
+  }
 }

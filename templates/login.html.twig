@@ -1,48 +1,30 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta charset="UTF-8">
-		<meta name="description" content="GOT PTTK (Górska Odznaka Turystyczna Polskiego Towarzystwa Tusrytycznp-Krajoznawczego) application for tourists">
-		<meta name="keywords" content="tour, mountains, trekking">
-		<meta name="author" content="Michał Wiczk, Szymon Gąsior">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>
-			{% block title %}GOT PTTK
-			{% endblock %}
-		</title>
-		{% block stylesheets %}
-			<link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
-			<link href="{{ asset('../public/assets/css/index.css') }}" rel="stylesheet">
-			<link href="{{ asset('../public/assets/css/button.css') }}" rel="stylesheet">
-			<link href="{{ asset('../public/assets/css/login.css') }}" rel="stylesheet">
-		{% endblock %}
-	</head>
-	<body>
-		{% block body %}
-			{{ include('header.html.twig') }}
-			<div class="container">
-				<div class="content">
-					<div class="box">
-						<form class="log__form" method="post">
-							<h3>Podaj login</h3><br>
-							<input type="email" class="form__input" name="email" required/>
-							<a class="form__err" name="emailErr">Login niepoprawny</a>
-							<h3>Podaj hasło</h3><br>
-							<input type="password" class="form__input" name="password" required/>
-							<a class="form__err" name="passwordErr">Hasło niepoprawne</a>
-							<a class="form__err" name="loginError">Należy podać login i hasło</a>
-							<button type="submit" class="button box__button">Zaloguj</button>
-						</form>
-						<a class="link" href='resetPassword'>Zapomniałem hasła
-						</a>
-						<div class="box__route"></div>
-					</div>
-				</div>
+{% extends "index.html.twig" %}
+{% block stylesheets %}
+	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/index.css') }}" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/button.css') }}" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/login.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+	{{ include('header.html.twig') }}
+	<div class="container">
+		<div class="content">
+			<div class="box">
+				<form class="log__form" method="post">
+					<h3>Podaj login</h3><br>
+					<input type="email" class="form__input" name="email" required/>
+					<a class="form__err" name="emailErr">Login niepoprawny</a>
+					<h3>Podaj hasło</h3><br>
+					<input type="password" class="form__input" name="password" required/>
+					<a class="form__err" name="passwordErr">Hasło niepoprawne</a>
+					<a class="form__err" name="loginError">Należy podać login i hasło</a>
+					<button type="submit" class="button box__button">Zaloguj</button>
+				</form>
+				<a class="link" href='resetPassword'>Zapomniałem hasła
+				</a>
+				<div class="box__route"></div>
 			</div>
-			{{ include('footer.html.twig') }}
-		{% endblock %}
-		{% block javascripts %}{% endblock %}
-	</body>
-</html>
+		</div>
+	</div>
+	{{ include('footer.html.twig') }}
+{% endblock %}
