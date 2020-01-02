@@ -11,8 +11,12 @@
 			<h3 class="content__title">Utwórz trasę</h3>
 			<div class="box">
 				<div class="box__nav">
-					<input type="button" class="button box__nav__button" value="Dodaj odcinek z bazy danych">
-					<input type="button" class="button box__nav__button" value="Dodaj własny odcinek">
+					<button class="button box__nav__button">
+						<a class="link" href='./findSection'>Dodaj odcinek z bazy danych</a>
+					</button>
+					<button class="button box__nav__button">
+						<a class="link" href='./createOwnSection'>Dodaj własny odcinek</a>
+					</button>
 				</div>
 				<div class="box__route">
 					{% if routes %}

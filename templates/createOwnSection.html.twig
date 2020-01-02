@@ -1,0 +1,23 @@
+{% extends "index.html.twig" %}
+{% block stylesheets %}
+	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/index.css') }}" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/createOwnSection.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+	{{ include('header.html.twig') }}
+	<div class="container">
+		<div class="content">
+			<h3 class="content__title">Utwórz trasę</h3>
+			<div class="box">
+				
+			
+
+				<input type="button" class="button box__button" value="Powrót">
+				<input type="button" class="button box__button" value="Powrót">
+			</div>
+		</div>
+	</div>
+	{{ include('footer.html.twig') }}
+{% endblock %}
+

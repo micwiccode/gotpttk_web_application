@@ -24,16 +24,6 @@
   justify-content: center;
 }
 
-.button{
-  border: none;
-  border-radius: 20px;
-  color: var(--white);
-  padding: 10px 30px;
-  font-family: var(--main_font);
-  font-weight: bold;
-  cursor: pointer;
-}
-
 .box__nav__button{
   background-color: var(--second_color);
   font-size: 0.6em;
@@ -44,7 +34,6 @@
 }
 
 .box__button{
-  background-color: var(--black);
   padding: 8px 30px;
 }
 
@@ -92,6 +81,12 @@
   position: relative;
   border: none;
   background-color: transparent;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.box__route__row__delete_btn:focus{
+  outline: none;
 }
 
 #cross {
