@@ -59,3 +59,63 @@
 .box__route__content{
   color: var(--black);
 }
+
+.box__route__grid{
+  width: 90%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-rows: 1fr;
+  color: var(--black);
+}
+
+.box__route__row {
+  display: grid;
+  grid-template-columns: 60% 10% 20% 10%;
+  grid-column: 1 / 5;
+  font-size: .8em;
+}
+
+.box__route__row:nth-child(2){
+  padding-top: 10px;
+}
+
+.box__route__row--header {
+  font-size: .9em;
+  font-weight: bold;
+}
+
+.box__route__row > div:first-child {
+  justify-self: start;
+}
+
+.box__route__row__delete_btn{
+  position: relative;
+  border: none;
+  background-color: transparent;
+}
+
+#cross {
+  background: red;
+  height: 16px;
+  width: 4px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-100%) rotate(45deg);
+}
+
+ #cross:after {
+  background: red;
+  content: "";
+  height: 16px;
+  width: 4px;
+  position: absolute;
+  transform: translateX(-50%) rotate(90deg)
+}  
+
+.box__route__grid__sum{
+  grid-column: 3/4;
+  font-size: .9em;
+  font-weight: bold;
+  justify-self: start;
+}
+
