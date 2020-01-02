@@ -25,19 +25,8 @@
   padding-bottom: 12px;
 }
 
-.button{
-  border: none;
-  border-radius: 20px;
-  color: var(--white);
-  padding: 10px 30px;
-  font-family: var(--main_font);
-  font-weight: bold;
-  cursor: pointer;
-}
-
 .box__button{
-  background-color: var(--black);
-  padding: 8px 30px;
+  padding: 10px 50px;
   margin-top: 8px;
 }
 

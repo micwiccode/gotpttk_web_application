@@ -21,14 +21,6 @@
   width: 100%;
 }
 
-.form__input{
-  border: none;
-  border-radius: 20px;
-  padding: 1% 2%;
-  font-family: var(--main_font);
-  font-weight: bold;
-  cursor: pointer;
-}
 
 .form__input__name {
   background-color: white;

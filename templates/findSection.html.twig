@@ -2,6 +2,7 @@
 {% block stylesheets %}
 	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
 	<link href="{{ asset('../public/assets/css/index.css') }}" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/button.css') }}" rel="stylesheet">
 	<link href="{{ asset('../public/assets/css/findSection.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
@@ -11,8 +12,8 @@
 			<h3 class="content__title">Przeglądaj odcinki</h3>
 			<form action="#" method="POST" class="form">
 				<div class="form__fields">
-					<input type="text" name="section_name" placeholder="np. Śnieżka" class="form__input form__input__name">
-					<select name="section_group" class="form__input form__input__group">
+					<input type="text" name="section_name" placeholder="np. Śnieżka" class="button form__input__name">
+					<select name="section_group" class="button form__input__group">
 						<option value="0">Grupa górska ↓</option>
 						<option value="t01">Tatry Wysokie T.01</option>
 						<option value="t02">Tatry Zachodnie T.02</option>
@@ -22,13 +23,13 @@
 						<option value="bz05">Gorce BZ.05</option>
 					</select>
 				</div>
-				<input type="submit" value="Wyszukaj" class="form__input form__input__btn">
+				<input type="submit" value="Wyszukaj" class="button form__input__btn">
 			</form>
 			<div class="box">
 				<div class="box__zone">
 					<p class="box__zone__name">TATRY I PODTATRZE</p>
 					<span class="box__zone__line"></span>
-					<div class="box__zone__groups"> 
+					<div class="box__zone__groups">
 						<a href="#" class="box__zone__group">Tatry Wysokie T.01</a>
 						<a href="#" class="box__zone__group">Tatry Wysokie T.01</a>
 						<a href="#" class="box__zone__group">Tatry Wysokie T.01</a>
