@@ -26,11 +26,11 @@
 
 .box__nav__button{
   background-color: var(--second_color);
-  font-size: 0.6em;
+  font-size: 0.7em;
 }
 
 .box__nav__button:first-of-type {
-  margin-right: 10%;
+  margin-right: 0;
 }
 
 .box__button{

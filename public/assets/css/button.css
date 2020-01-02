@@ -7,4 +7,9 @@
   font-weight: bold;
   cursor: pointer;
   background-color: var(--black);
+  margin: 0 auto;
+}
+
+.button:focus {
+  outline: none;
 }

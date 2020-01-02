@@ -12,11 +12,43 @@
 		<div class="content">
 			<h3 class="content__title">Dodaj własny odcinek</h3>
 			<div class="box">
-			
-				<input type="button" class="button box__button" value="Zapisz odcinek">
-				<input type="button" class="button box__button" value="Powrót">
+				<h3 class="box__title">Odcinek</h3>
+				<div class="line"></div>
+				<form action="#" method="POST" class="form">
+					<div class="form__part">
+						<label for="section_begin" class="form__label">Nazwa punktu początkowego</label>
+						<input type="text" name="section_begin" class="button form__input">
+					</div>
+					<div class="form__part">
+						<label for="section_end" class="form__label">Nazwa punktu końcowego</label>
+						<input type="text" name="section_end" class="button form__input">
+					</div>
+					<div class="form__part">
+						<label for="section_group" class="form__label">Grupa górska</label>
+						<select name="section_group" class="button form__input form__select">
+							<option value="0"></option>
+							<option value="t01">Tatry Wysokie T.01</option>
+							<option value="t02">Tatry Zachodnie T.02</option>
+							<option value="bz01">Beskid Śląski BZ.01</option>
+							<option value="bz02">Beskid Żywiecki BZ.02</option>
+							<option value="bz03">Beskid Mały BZ.03</option>
+							<option value="bz05">Gorce BZ.05</option>
+						</select>
+					</div>
+					<div class="form__part">
+						<label for="section_length" class="form__label">Długość odcinaka (w km)</label>
+						<input type="text" name="section_length" class="button form__input">
+					</div>
+					<div class="form__part">
+						<label for="section_height" class="form__label">Przewyższenie (w m)</label>
+						<input type="text" name="section_height" class="button form__input">
+					</div>
+					<input type="submit" class="button" value="Zapisz odcinek">
+					<buttom class="button button_back">
+						<a class="link" href="./createRoute">Powrót</a>
+					</button>
+				</div>
 			</div>
 		</div>
-	</div>
-	{{ include('footer.html.twig') }}
-{% endblock %}
+		{{ include('footer.html.twig') }}
+	{% endblock %}
