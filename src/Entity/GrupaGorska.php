@@ -14,10 +14,36 @@ class GrupaGorska
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idG;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="text", length=30)
+     */
+    private $nazwa;
+
+    /**
+     * @ORM\Column(type="text", length=5)
+     */
+    private $kodGrupy;
+
+
+    //Getters & Setters
+    public function getIdG(): ?int
     {
-        return $this->id;
+        return $this->idG;
+    }
+
+    public function getNazwa(){
+        return $this->nazwa;
+    }
+    public function setNazwa($nazwa){
+        $this->nazwa = $nazwa;
+    }
+
+    public function getKodGrupy(){
+        return $this->kodGrupy;
+    }
+    public function setKodGrupy($kodGrupy){
+        $this->kodGrupy = $kodGrupy;
     }
 }

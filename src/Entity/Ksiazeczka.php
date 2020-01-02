@@ -14,10 +14,25 @@ class Ksiazeczka
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idK;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="integer", precision=4)
+     */
+    private $liczbaPunktow;
+
+
+
+    //Getters & Setters
+    public function getIdK(): ?int
     {
-        return $this->id;
+        return $this->idK;
+    }
+
+    public function getLiczbaPunktow(){
+        return $this->liczbaPunktow;
+    }
+    public function setLiczbaPunktow($liczbaPunktow){
+        $this->liczbaPunktow = $liczbaPunktow;
     }
 }

@@ -11,13 +11,43 @@ class KsiazeczkaWeryfikowana
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idK;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Id()
+     * @ORM\Column(type="integer")
+     */
+    private $idP;
+
+    /**
+     * @ORM\Column(type="date", nullable=TRUE)
+     */
+    private $dataWeryfikacji;
+
+
+    public function __construct($idK, $idP){
+        $this->idK = $idK;
+        $this->idP = $idP;
+    }
+
+
+    
+    //Getters & Setters
+    public function getIdK(): ?int
     {
-        return $this->id;
+        return $this->idK;
+    }
+    public function getIdP(): ?int
+    {
+        return $this->idP;
+    }
+
+    public function getDataWeryfikacji(){
+        return $this->dataWeryfikacji;
+    }
+    public function setDataWeryfikacji($dataWeryfikacji){
+        $this->dataWeryfikacji = $dataWeryfikacji;
     }
 }

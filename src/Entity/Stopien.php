@@ -14,10 +14,38 @@ class Stopien
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idS;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Column(type="text", length=60)
+     */
+    private $nazwa;
+
+    /**
+     * @ORM\Column(type="integer", precision=3)
+     */
+    private $wymaganaLiczbaPunktow;
+
+
+
+    //Getters & Setters
+    public function getIdS(): ?int
     {
-        return $this->id;
+        return $this->idS;
     }
+
+    public function getNazwa(){
+        return $this->nazwa;
+    }
+    public function setNazwa($nazwa){
+        $this->nazwa = $nazwa;
+    }
+
+    public function getWymaganaLiczbaPunktow(){
+        return $this->wymaganaLiczbaPunktow;
+    }
+    public function setLiczbaPunktow($wymaganaLiczbaPunktow){
+        $this->wymaganaLiczbaPunktow = $wymaganaLiczbaPunktow;
+    }
+
 }

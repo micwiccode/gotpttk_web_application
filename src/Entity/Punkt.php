@@ -22,21 +22,21 @@ class Punkt
     private $nazwa;
 
     /**
-     * @ORM\Column(type="float", precision=10)
+     * @ORM\Column(type="float", precision=10, nullable=TRUE)
      */
     private $szerokoscGeograficzna;
 
      /**
-     * @ORM\Column(type="float", precision=10)
+     * @ORM\Column(type="float", precision=10, nullable=TRUE)
      */
     private $dlugoscGeograficzna;
 
 
 
     //Getters & Setters
-    public function getId(): ?int
+    public function getIdPu(): ?int
     {
-        return $this->id;
+        return $this->idPu;
     }
 
     public function getNazwa(){

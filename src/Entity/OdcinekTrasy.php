@@ -11,13 +11,43 @@ class OdcinekTrasy
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idTr;
 
-    public function getId(): ?int
-    {
-        return $this->id;
+    /**
+     * @ORM\Id()
+     * @ORM\Column(type="integer")
+     */
+    private $idO;
+
+    /**
+     * @ORM\Column(type="date", nullable=TRUE)
+     */
+    private $dataOdcinka;
+
+
+    public function __construct($idTr, $idO){
+        $this->idTr = $idTr;
+        $this->idO = $idO;
     }
+
+
+
+     //Getters & Setters
+     public function getIdTr(): ?int
+     {
+         return $this->idTr;
+     }
+     public function getIdO(): ?int
+     {
+         return $this->idO;
+     }
+ 
+     public function getDataOdcinka(){
+         return $this->dataOdcinka;
+     }
+     public function setDataOdcinka($dataOdcinka){
+         $this->dataOdcinka = $dataOdcinka;
+     }
 }

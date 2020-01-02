@@ -11,13 +11,43 @@ class PrzodownikGrupy
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $idP;
 
-    public function getId(): ?int
+    /**
+     * @ORM\Id()
+     * @ORM\Column(type="integer")
+     */
+    private $idG;
+
+    /**
+     * @ORM\Column(type="date", nullable=TRUE)
+     */
+    private $dataPG;
+
+
+    public function __construct($idP, $idG){
+        $this->idP = $idP;
+        $this->idG = $idG;
+    }
+
+
+    
+    //Getters & Setters
+    public function getIdP(): ?int
     {
-        return $this->id;
+        return $this->idP;
+    }
+    public function getIdG(): ?int
+    {
+        return $this->idG;
+    }
+
+    public function getDataPG(){
+        return $this->dataPG;
+    }
+    public function setDataPG($dataPG){
+        $this->dataPG = $dataPG;
     }
 }
