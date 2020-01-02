@@ -26,7 +26,7 @@ class SectionController extends AbstractController
   }
 
   /**
-   * @Route("/findSection/idGroup")
+   * @Route("/findSection_idGroup")
    */
   public function findSectionIdGroup()
   {
