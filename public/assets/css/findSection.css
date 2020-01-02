@@ -75,15 +75,6 @@
   margin-bottom: 1%;
 }
 
-.box__zone__line{
-  display: block;
-  height: 3px;
-  border: 0;
-  border-top: 3px solid var(--second_color);
-  margin: 1% 6%;
-  padding: 0;
-}
-
 .box__zone__groups * {
   text-decoration: none;
   color: var(--black);

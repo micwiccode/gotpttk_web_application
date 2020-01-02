@@ -3,22 +3,20 @@
 	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
 	<link href="{{ asset('../public/assets/css/index.css') }}" rel="stylesheet">
 	<link href="{{ asset('../public/assets/css/button.css') }}" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/line.css') }}" rel="stylesheet">
 	<link href="{{ asset('../public/assets/css/createOwnSection.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
 	{{ include('header.html.twig') }}
 	<div class="container">
 		<div class="content">
-			<h3 class="content__title">Utwórz trasę</h3>
+			<h3 class="content__title">Dodaj własny odcinek</h3>
 			<div class="box">
-				
 			
-
-				<input type="button" class="button box__button" value="Powrót">
+				<input type="button" class="button box__button" value="Zapisz odcinek">
 				<input type="button" class="button box__button" value="Powrót">
 			</div>
 		</div>
 	</div>
 	{{ include('footer.html.twig') }}
 {% endblock %}
-
