@@ -32,8 +32,6 @@ class OdcinekTrasy
         $this->idO = $idO;
     }
 
-
-
      //Getters & Setters
      public function getIdTr(): ?int
      {

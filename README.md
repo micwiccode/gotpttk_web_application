@@ -9,3 +9,13 @@ then check inside .env file and change DATABASE_URL if your phpMyAdmin has non-d
 If you have done any modifications to entity schemas run ```php bin/console doctrine:migrations:diff```
 To migrate your database to the server run this command: 
 ```php bin/console doctrine:migrations:migrate```
+
+```php bin/console doctrine:database:create```
+```php bin/console doctrine:migrations:diff```
+```php bin/console doctrine:migrations:migrate```
+
+To load data to database
+```php bin/console doctrine:migrations:generate```
+Copy content of ```database.text``` to new migration file up method and run
+```php bin/console doctrine:migrations:execute --up [number of your file]``` eg.
+```php bin/console doctrine:migrations:execute --up 20200103154637```

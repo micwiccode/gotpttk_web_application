@@ -32,21 +32,22 @@ class Odcinek
     private $przewyzszenie;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Punkt")
+     * @ORM\JoinColumn(name="punkt_startowy", referencedColumnName="id_pu", nullable=FALSE)
      */
     private $punktStartowy;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="Punkt")
+     * @ORM\JoinColumn(name="punkt_koncowy", referencedColumnName="id_pu", nullable=FALSE)
      */
     private $punktKoncowy;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="GrupaGorska")
+     * @ORM\JoinColumn(name="id_g", referencedColumnName="id_g",nullable=FALSE)
      */
     private $idG;
-
-
 
     //Getters & Setters
     public function getIdO(): ?int
