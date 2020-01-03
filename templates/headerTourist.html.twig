@@ -1,0 +1,28 @@
+{% block stylesheets %}
+	<link href="{{ asset('../public/assets/css/header.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+<header class="header">
+	<div class="header__title">
+		<h2 class="header__title__text">
+			<a class="link" href='./'>Górska Odznaka Turystyczna PTTK</a>
+		</h2>
+	</div>
+	<nav class="header__nav">
+		<ul class="header__nav__list">
+            <li class="header__nav__list__element">
+				<a class="link" href='./book'>Książeczka GOT</a>
+			</li>
+			<li class="header__nav__list__element">
+				<a class="link" href='./createRoute'>Utwórz trasę</a>
+			</li>
+			<li class="header__nav__list__element">
+				<a class="link" href='./findSection'>Przeglądaj odcinki</a>
+			</li>
+			<li class="header__nav__list__element">
+				<a class="link" href=''>Wyloguj się</a>
+			</li>
+		</ul>
+	</nav>
+</header>
