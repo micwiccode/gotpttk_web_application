@@ -33,7 +33,7 @@ class LoginController extends AbstractController
   {
     $request = Request::createFromGlobals();
     $bEmail = false;
-    $bPasswcord = false;
+    $bPassword = false;
     
     //check email
     if($request->request->get('email') == 'user@user.com'){
@@ -41,7 +41,7 @@ class LoginController extends AbstractController
       //check password
       if($request->request->get('password') == '1234'){
         $bPassword = true;
-        return $this->render('book.html.twig');  
+        return $this->redirect('book');    
       }
       else{
         $this->addFlash(
