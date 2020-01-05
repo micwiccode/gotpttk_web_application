@@ -11,17 +11,15 @@
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Przeglądaj odcinki</h3>
-			<form action="#" method="POST" class="form">
+			<form method="GET" class="form">
 				<div class="form__fields">
 					<input type="text" name="section_name" placeholder="np. Śnieżka" class="button form__input__name">
 					<select name="section_group" class="button form__input__group">
 						<option value="0">Grupa górska ↓</option>
-						<option value="t01">Tatry Wysokie T.01</option>
-						<option value="t02">Tatry Zachodnie T.02</option>
-						<option value="bz01">Beskid Śląski BZ.01</option>
-						<option value="bz02">Beskid Żywiecki BZ.02</option>
-						<option value="bz03">Beskid Mały BZ.03</option>
-						<option value="bz05">Gorce BZ.05</option>
+						{% for mountain_group in mountain_groups %}
+							<option value="{{mountain_group.idG()}}">{{mountain_group.nazwa}}
+								{{mountain_group.kodGrupy}}</option>
+						{% endfor %}
 					</select>
 				</div>
 				<input type="submit" value="Wyszukaj" class="button form__input__btn">
@@ -31,18 +29,12 @@
 					<p class="box__zone__name">TATRY I PODTATRZE</p>
 					<span class="line"></span>
 					<div class="box__zone__groups">
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
-						<a href="./findSection_idGroup" class="box__zone__group">Tatry Wysokie T.01</a>
+						{% for mountain_group in mountain_groups %}
+							<a href="./findSection_group{{mountain_group.idG}}" class="box__zone__group">
+								{{mountain_group.nazwa}}
+								{{mountain_group.kodGrupy}}
+							</a>
+						{% endfor %}
 					</div>
 				</div>
 			</div>

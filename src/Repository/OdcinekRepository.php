@@ -19,6 +19,27 @@ class OdcinekRepository extends ServiceEntityRepository
         parent::__construct($registry, Odcinek::class);
     }
 
+    /**
+     * @return int[]
+     */
+    public function getDistinctEndPointsFromGroup($idG): array
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->where('o.idG = :idG')
+            ->setParameter('idG', $idG)
+            ->groupBy('o.punktKoncowy');
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+        // $entityManager = $this->getEntityManager();
+        // $query = $entityManager->createQuery(
+        //     'select o.punktKoncowy from App\Entity\Odcinek o group by o.punktKoncowy'
+        // );
+        // return $query->getResult();
+    }
+
+
     // /**
     //  * @return Odcinek[] Returns an array of Odcinek objects
     //  */

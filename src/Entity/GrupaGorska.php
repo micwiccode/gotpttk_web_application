@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GrupaGorskaRepository")
@@ -26,10 +28,8 @@ class GrupaGorska
      */
     private $kodGrupy;
 
-
     //Getters & Setters
-    public function getIdG(): ?int
-    {
+    public function getIdG(): ?int{
         return $this->idG;
     }
 

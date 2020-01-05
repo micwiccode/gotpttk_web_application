@@ -79,6 +79,12 @@ class Odcinek
     public function getPunktStartowy(){
         return $this->punktStartowy;
     }
+
+    public function getPunktStartowyNazwa()
+    {
+        return $this->punktStartowy->getNazwa();
+    }
+
     public function setPunktStartowy($punktStartowy){
         $this->punktStartowy = $punktStartowy;
     }
@@ -86,6 +92,12 @@ class Odcinek
     public function getPunktKoncowy(){
         return $this->punktKoncowy;
     }
+
+    public function getPunktKoncowyNazwa()
+    {
+        return $this->punktKoncowy->getNazwa();
+    }
+
     public function setPunktKoncowy($punktKoncowy){
         $this->punktKoncowy = $punktKoncowy;
     }
