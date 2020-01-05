@@ -15,5 +15,12 @@ class RouteController extends AbstractController{
     return $this->render('createRoute.html.twig', array('routes' => $routes));
   }
 
+  /**
+   * @Route("/routeList")
+   */
+  public function list(){
+    return $this->render('routeList.html.twig');
+  }
+
 
 }
