@@ -1,0 +1,114 @@
+@import "consts.css";
+
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1% 0;
+}
+
+.box{
+  width: 85%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white_with_alpha);
+  padding: 3% 0;
+}
+
+.box__nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3%;
+}
+
+.box__nav__button{
+  background-color: var(--second_color);
+  padding: 8px 30px;
+}
+
+.box__button{
+  padding: 8px 30px;
+}
+
+.box__route{
+  width: 100%;  
+  margin-bottom: 2%;
+  background-color: var(--white);
+  text-align: center;
+}
+
+.box__route__grid{
+  width: 90%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-rows: 1fr;
+  color: var(--black);
+}
+
+.box__route__row {
+  display: grid;
+  grid-template-columns: 50% 25% 25%;
+  grid-column: 1 / 5;
+  font-size: .8em;
+}
+
+.box__route__row__empty {
+    height: 12px !important;
+}
+
+.box__route__row:nth-child(2){
+  padding-top: 10px;
+}
+
+.box__route__row--header {
+  font-size: .9em;
+  font-weight: bold;
+}
+
+.box__route__row > div:first-child {
+  justify-self: start;
+}
+
+.box__route__row__delete_btn:focus{
+  outline: none;
+}
+
+#cross {
+  background: red;
+  height: 16px;
+  width: 4px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-100%) rotate(45deg);
+}
+
+ #cross:after {
+  background: red;
+  content: "";
+  height: 16px;
+  width: 4px;
+  position: absolute;
+  transform: translateX(-50%) rotate(90deg)
+}  
+
+.sum{
+  font-size: 1em;
+  font-weight: bold;
+  justify-self: center;
+  color: black;
+  padding: 0;
+}
+
+.box__edit{
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    color: var(--black);
+  }
+

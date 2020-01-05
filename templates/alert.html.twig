@@ -1,0 +1,15 @@
+{% extends "index.html.twig" %}
+{% block stylesheets %}
+	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/index.css') }}" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/button.css') }}" rel="stylesheet">
+    <link href="{{ asset('../public/assets/css/alert.css') }}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <div class="overlay"></div>
+    <div class="box__alert">
+        <a class="box__alert__title">Przepraszamy</a>
+        <a class="box__alert__message">Brak połączenia z serwerem</a>
+        <button class="button box__alert__button" href="">Zamknij</a>
+    </div>
+{% endblock %}
