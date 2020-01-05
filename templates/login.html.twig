@@ -12,7 +12,7 @@
 			<div class="box">
 				<form class="log__form" method="post" action='./verifyLogin'>
 					<h3>Podaj login</h3><br>
-					<input type="email" class="form__input" name="email" required>
+					<input type="email" class="form__input" name="email" required value="{{login}}">
 					<a class="form__err" name="emailErr"
 					style="visibility: {% for message in app.flashes('email') %}
 					{{message}}{% endfor %};">Login niepoprawny</a>
