@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Repository\TurystaRepository;
 use App\Entity\Turysta;
 
+use Symfony\Component\HttpFoundation\Session\Session;
+
 
 class LoginController extends AbstractController
 {
@@ -17,6 +19,8 @@ class LoginController extends AbstractController
    */
   public function index()
   {
+    $session = $this->get('session');
+    $session->clear();
     return $this->render('login.html.twig', array('login' => ''));
   }
 
@@ -48,15 +52,25 @@ class LoginController extends AbstractController
     //check email
     if($email==$emailF && filter_var($emailF, FILTER_VALIDATE_EMAIL)==true){
       $repository = $this->getDoctrine()->getRepository(Turysta::class);
-      $turysta = $repository->findOneByLogin($emailF);
+      $tourist = $repository->findOneByLogin($emailF);
       
-      if(!is_null($turysta)){
+      if(!is_null($tourist)){
         $bEmail = true;
         
         //check password
-        if($password==$passwordF && $turysta->getHaslo() == $password){
+        if($password==$passwordF && $tourist->getHaslo() == $password){
           $bPassword = true;
+          
+          //setting sessions parameters
+          $session = $this->get('session');
+          $session->start();
+          $session->set('id', $tourist->getIdTu());
+          $session->set('imie', $tourist->getImie());
+          $session->set('nazwisko', $tourist->getNazwisko());
+          $session->set('logged', true);
+
           return $this->redirect('book');
+          //return $this->forward('App\Controller\BookController::id', ['id' => $turysta->getIdTu()]);
         }    
         else{
           //password incorrect message

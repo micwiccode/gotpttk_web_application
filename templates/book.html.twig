@@ -6,7 +6,11 @@
 	<link href="{{ asset('../public/assets/css/book.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
+{% if logged %}
 	{{ include('headerTourist.html.twig') }}
+{% else %}
+	{{ include('header.html.twig') }}
+{% endif %}
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Twoja Elektroniczna Książeczka GOT</h3>
@@ -14,15 +18,15 @@
                 <div class="box__book">
                     <img id="profilepic" src="../public/assets/img/profilepic.png" alt="Profile picture">
 				    <div class="box__userdata">
-						    <p id="name">Kamil NOWAK</p>
+						    <p id="name">{{imie}} {{nazwisko}}</p>
                             <p id="dur">01.01.1980r.</p>
                             <p id="badge">Odznaka W góry duża srebrna</p>
                             <p id="sum">Liczba punktów: 36</p>
                     </div>
 				</div>
                 <div class="box__book">
-                    <a class="link black" href=''>Edytuj dane osobowe</a>
-                    <a class="link button box__book__button" href="">Zarządzaj książeczką</a>
+                    <a class="link black" href='' >Edytuj dane osobowe</a>
+                    <a class="link button box__book__button" href=''>Zarządzaj książeczką</a>
                 </div>
 			</div>
 		</div>
