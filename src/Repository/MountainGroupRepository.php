@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\GrupaGorska;
+use App\Entity\MountainGroup;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method GrupaGorska|null find($id, $lockMode = null, $lockVersion = null)
- * @method GrupaGorska|null findOneBy(array $criteria, array $orderBy = null)
- * @method GrupaGorska[]    findAll()
- * @method GrupaGorska[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method MountainGroup|null find($id, $lockMode = null, $lockVersion = null)
+ * @method MountainGroup|null findOneBy(array $criteria, array $orderBy = null)
+ * @method MountainGroup[]    findAll()
+ * @method MountainGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class GrupaGorskaRepository extends ServiceEntityRepository
+class MountainGroupRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, GrupaGorska::class);
+        parent::__construct($registry, MountainGroup::class);
     }
 
     // /**
@@ -38,7 +38,7 @@ class GrupaGorskaRepository extends ServiceEntityRepository
     // }
 
     // /**
-    //  * @return GrupaGorska[] Returns an array of GrupaGorska objects
+    //  * @return MountainGroup[] Returns an array of MountainGroup objects
     //  */
     /*
     public function findByExampleField($value)
@@ -55,7 +55,7 @@ class GrupaGorskaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?GrupaGorska
+    public function findOneBySomeField($value): ?MountainGroup
     {
         return $this->createQueryBuilder('g')
             ->andWhere('g.exampleField = :val')

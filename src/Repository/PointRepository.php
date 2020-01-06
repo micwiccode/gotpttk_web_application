@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Punkt;
+use App\Entity\Point;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Punkt|null find($id, $lockMode = null, $lockVersion = null)
- * @method Punkt|null findOneBy(array $criteria, array $orderBy = null)
- * @method Punkt[]    findAll()
- * @method Punkt[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Point|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Point|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Point[]    findAll()
+ * @method Point[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PunktRepository extends ServiceEntityRepository
+class PointRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Punkt::class);
+        parent::__construct($registry, Point::class);
     }
 
     // /**
-    //  * @return Punkt[] Returns an array of Punkt objects
+    //  * @return Point[] Returns an array of Point objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PunktRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Punkt
+    public function findOneBySomeField($value): ?Point
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

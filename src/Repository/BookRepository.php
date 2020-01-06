@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Ksiazeczka;
+use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Ksiazeczka|null find($id, $lockMode = null, $lockVersion = null)
- * @method Ksiazeczka|null findOneBy(array $criteria, array $orderBy = null)
- * @method Ksiazeczka[]    findAll()
- * @method Ksiazeczka[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Book|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Book|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Book[]    findAll()
+ * @method Book[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class KsiazeczkaRepository extends ServiceEntityRepository
+class BookRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Ksiazeczka::class);
+        parent::__construct($registry, Book::class);
     }
 
     // /**
-    //  * @return Ksiazeczka[] Returns an array of Ksiazeczka objects
+    //  * @return Book[] Returns an array of Book objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class KsiazeczkaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Ksiazeczka
+    public function findOneBySomeField($value): ?Book
     {
         return $this->createQueryBuilder('k')
             ->andWhere('k.exampleField = :val')

@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\GrupaGorska;
-use App\Entity\Odcinek;
+use App\Entity\MountainGroup;
+use App\Entity\Section;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-// use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 class SectionController extends AbstractController
 {
@@ -16,7 +16,7 @@ class SectionController extends AbstractController
    */
   public function findSection()
   {
-    $mountain_groups = $this->getDoctrine()->getRepository(GrupaGorska::class)->findAll();
+    $mountain_groups = $this->getDoctrine()->getRepository(MountainGroup::class)->findAll();
     return $this->render('findSection.html.twig', array('mountain_groups' => $mountain_groups));
   }
 
@@ -35,12 +35,12 @@ class SectionController extends AbstractController
   public function findSectionIdGroup($id)
   {
     $doctrine = $this->getDoctrine();
-    $mountainGroup = $doctrine->getRepository(GrupaGorska::class)->find($id);
-    $endPoints = $doctrine->getRepository(Odcinek::class)->getDistinctEndPointsFromGroup($id);
+    $mountainGroup = $doctrine->getRepository(MountainGroup::class)->find($id);
+    $endPoints = $doctrine->getRepository(Section::class)->getDistinctEndPointsFromGroup($id);
     $startPoints = array();
     foreach ($endPoints as $endPoint) {
-      $startPointsForEndPoint = $doctrine->getRepository(Odcinek::class)
-      ->findBy(['punktKoncowy' => $endPoint->getPunktKoncowy()]);
+      $startPointsForEndPoint = $doctrine->getRepository(Section::class)
+      ->findBy(['endPoint' => $endPoint->getEndPoint()]);
       array_push($startPoints, $startPointsForEndPoint);
     }
     return $this->render('findSectionIdGroup.html.twig',
@@ -48,19 +48,24 @@ class SectionController extends AbstractController
   }
 
   /**
-   * @Route("/findSection?section_name={name}&section_group={groupId}, methods={"GET"}")
-   */
-  // public function findSectionForm($name, $gropuId)
-  // {
-  //   return new Response('<html><body>$name<br>$gropuId</body></html>');
-  //   // return $this->render('findSectionIdGroup.html.twig');
-  // }
-
-  /**
    * @Route("/createOwnSection")
    */
   public function createOwnSection()
   {
     return $this->render('createOwnSection.html.twig');
+  }
+
+  /**
+   * @Route("/findSection_result", methods={"POST"})
+   */
+  public function findSectionForm()
+  {
+    $request = Request::createFromGlobals();
+
+    $sectionName = $request->request->get('sectionName');
+    $sectionGroup = $request->request->get('sectionGroup');
+    $doctrine = $this->getDoctrine();
+    $results = $doctrine->getRepository(Section::class)->findByNameAndGroup($sectionName, $sectionGroup);
+    return $this->render('findSectionResult.html.twig', array('results' => $results));
   }
 }

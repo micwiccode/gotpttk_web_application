@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Trasa;
+use App\Entity\Route;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Trasa|null find($id, $lockMode = null, $lockVersion = null)
- * @method Trasa|null findOneBy(array $criteria, array $orderBy = null)
- * @method Trasa[]    findAll()
- * @method Trasa[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Route|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Route|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Route[]    findAll()
+ * @method Route[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TrasaRepository extends ServiceEntityRepository
+class RouteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Trasa::class);
+        parent::__construct($registry, Route::class);
     }
 
     // /**
-    //  * @return Trasa[] Returns an array of Trasa objects
+    //  * @return Route[] Returns an array of Route objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class TrasaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Trasa
+    public function findOneBySomeField($value): ?Route
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')

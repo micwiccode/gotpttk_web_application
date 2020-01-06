@@ -11,14 +11,14 @@
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Przeglądaj odcinki</h3>
-			<form method="GET" class="form">
+			<form class="form" method="post" action='./findSection_result' >
 				<div class="form__fields">
-					<input type="text" name="section_name" placeholder="np. Śnieżka" class="button form__input__name">
-					<select name="section_group" class="button form__input__group">
+					<input type="text" name="sectionName" placeholder="np. Śnieżka" class="button form__input__name">
+					<select name="sectionGroup" class="button form__input__group">
 						<option value="0">Grupa górska ↓</option>
 						{% for mountain_group in mountain_groups %}
-							<option value="{{mountain_group.idG()}}">{{mountain_group.nazwa}}
-								{{mountain_group.kodGrupy}}</option>
+							<option value="{{mountain_group.idG}}">{{mountain_group.name}}
+								{{mountain_group.groupCode}}</option>
 						{% endfor %}
 					</select>
 				</div>
@@ -31,8 +31,8 @@
 					<div class="box__zone__groups">
 						{% for mountain_group in mountain_groups %}
 							<a href="./findSection_group{{mountain_group.idG}}" class="box__zone__group">
-								{{mountain_group.nazwa}}
-								{{mountain_group.kodGrupy}}
+								{{mountain_group.name}}
+								{{mountain_group.groupCode}}
 							</a>
 						{% endfor %}
 					</div>

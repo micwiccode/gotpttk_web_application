@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\OdcinekTrasy;
+use App\Entity\SectionRoute;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method OdcinekTrasy|null find($id, $lockMode = null, $lockVersion = null)
- * @method OdcinekTrasy|null findOneBy(array $criteria, array $orderBy = null)
- * @method OdcinekTrasy[]    findAll()
- * @method OdcinekTrasy[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method SectionRoute|null find($id, $lockMode = null, $lockVersion = null)
+ * @method SectionRoute|null findOneBy(array $criteria, array $orderBy = null)
+ * @method SectionRoute[]    findAll()
+ * @method SectionRoute[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class OdcinekTrasyRepository extends ServiceEntityRepository
+class SectionRouteRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, OdcinekTrasy::class);
+        parent::__construct($registry, SectionRoute::class);
     }
 
     // /**
-    //  * @return OdcinekTrasy[] Returns an array of OdcinekTrasy objects
+    //  * @return SectionRoute[] Returns an array of SectionRoute objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class OdcinekTrasyRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?OdcinekTrasy
+    public function findOneBySomeField($value): ?SectionRoute
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.exampleField = :val')
