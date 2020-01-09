@@ -1,4 +1,4 @@
-    public function up(Schema $schema) : void
+public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
         
@@ -69,16 +69,16 @@
         $this->addSql('INSERT INTO tourist (firstName, lastName, login, password, idB) 
                         VALUES ("Jan", "Kowalski", "jan@kowalski.com", "jan", 2)');
         
-        $this->addSql('INSERT INTO route(idR, sumOfPointsGOT, routeLength, hasSectionsOutOfBase, is_verified, route_date, idBook) VALUES (1,10,12.5,false,false,"2020-01-01",1)');
-        $this->addSql('INSERT INTO route(idR, sumOfPointsGOT, routeLength, hasSectionsOutOfBase, is_verified, route_date, idBook) VALUES (2,5,30.0,false,false,"2020-01-04",1)');
-        $this->addSql('INSERT INTO route(idR, sumOfPointsGOT, routeLength, hasSectionsOutOfBase, is_verified, idBook) VALUES(3,7,10.0,false,false,2)');
+        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, is_verified, trailDate, idBook) VALUES (1,10,12.5,false,false,"2020-01-01",1)');
+        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, is_verified, trailDate, idBook) VALUES (2,5,30.0,false,false,"2020-01-04",1)');
+        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, is_verified, idBook) VALUES(3,7,10.0,false,false,2)');
             
-        $this->addSql('INSERT INTO section_route (idR, idS) VALUES (1,14)');
-        $this->addSql('INSERT INTO section_route (idR, idS) VALUES (1,15)');
+        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (1,14)');
+        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (1,15)');
             
-        $this->addSql('INSERT INTO section_route (idR, idS) VALUES (2,9)');
+        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (2,9)');
             
-        $this->addSql('INSERT INTO section_route (idR, idS) VALUES (3,19)');
-        $this->addSql('INSERT INTO section_route (idR, idS) VALUES (3,20)');
+        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (3,19)');
+        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (3,20)');
         $this->addSql('SET FOREIGN_KEY_CHECKS=1'); 
     }
