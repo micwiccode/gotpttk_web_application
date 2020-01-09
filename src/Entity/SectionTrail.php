@@ -5,16 +5,16 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SectionRouteRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\SectionTrailRepository")
  */
-class SectionRoute
+class SectionTrail
 {
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="Route")
-     * @ORM\JoinColumn(name="idR", referencedColumnName="idR", nullable=FALSE)
+     * @ORM\ManyToOne(targetEntity="Trail")
+     * @ORM\JoinColumn(name="idT", referencedColumnName="idT", nullable=FALSE)
      */
-    private $idR;
+    private $idT;
 
     /**
      * @ORM\Id()
@@ -29,18 +29,18 @@ class SectionRoute
     private $sectionDate;
 
 
-    public function __construct($idR, $idS)
+    public function __construct($idT, $idS)
     {
-        $this->idR = $idR;
+        $this->idT = $idT;
         $this->idS = $idS;
     }
 
     //Getters & Setters
-    public function getIdR(): ?int
+    public function getIdT(): ?int
     {
-        return $this->idR;
+        return $this->idT;
     }
-    public function getIdS(): ?int
+    public function getIdS()
     {
         return $this->idS;
     }

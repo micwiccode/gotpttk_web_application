@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\SectionRoute;
+use App\Entity\SectionTrail;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method SectionRoute|null find($id, $lockMode = null, $lockVersion = null)
- * @method SectionRoute|null findOneBy(array $criteria, array $orderBy = null)
- * @method SectionRoute[]    findAll()
- * @method SectionRoute[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method SectionTrail|null find($id, $lockMode = null, $lockVersion = null)
+ * @method SectionTrail|null findOneBy(array $criteria, array $orderBy = null)
+ * @method SectionTrail[]    findAll()
+ * @method SectionTrail[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SectionRouteRepository extends ServiceEntityRepository
+class SectionTrailRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, SectionRoute::class);
+        parent::__construct($registry, SectionTrail::class);
     }
 
     // /**
-    //  * @return SectionRoute[] Returns an array of SectionRoute objects
+    //  * @return SectionTrail[] Returns an array of SectionTrail objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class SectionRouteRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?SectionRoute
+    public function findOneBySomeField($value): ?SectionTrail
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.exampleField = :val')

@@ -5,16 +5,16 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\RouteRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TrailRepository")
  */
-class Route
+class Trail
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer", name="idR")
+     * @ORM\Column(type="integer", name="idT")
      */
-    private $idR;
+    private $idT;
 
     /**
      * @ORM\Column(type="integer", name="sumOfPointsGOT", precision=10)
@@ -22,9 +22,9 @@ class Route
     private $sumOfPointsGOT;
 
     /**
-     * @ORM\Column(type="float", name="routeLength", precision=10)
+     * @ORM\Column(type="float", name="trailLength", precision=10)
      */
-    private $routeLength;
+    private $trailLength;
 
     /**
      * @ORM\Column(type="boolean", name="hasSectionsOutOfBase")
@@ -37,9 +37,9 @@ class Route
     private $isVerified;
 
     /**
-     * @ORM\Column(type="date", nullable=TRUE)
+     * @ORM\Column(type="date", nullable=TRUE, name="trailDate")
      */
-    private $routeDate;
+    private $trailDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="Book")
@@ -48,9 +48,9 @@ class Route
     private $idBook;
 
     //Getters & Setters
-    public function getId(): ?int
+    public function getIdT(): ?int
     {
-        return $this->id;
+        return $this->idT;
     }
 
     public function getSumOfPointsGOT(){
@@ -60,11 +60,11 @@ class Route
         $this->sumOfPointsGOT = $sumOfPointsGOT;
     }
 
-    public function getRouteLength(){
-        return $this->routeLength;
+    public function getTrailLength(){
+        return $this->trailLength;
     }
-    public function setRouteLength($routeLength){
-        $this->routeLength = $routeLength;
+    public function setTrailLength($trailLength){
+        $this->trailLength = $trailLength;
     }
 
     public function getHasSectionsOutOfBase(){
@@ -81,11 +81,11 @@ class Route
         $this->isVerified = $isVerified;
     }
     
-    public function getRouteDate(){
-        return $this->routeDate;
+    public function getTrailDate(){
+        return $this->trailDate;
     }
-    public function setRouteDate($routeDate){
-        $this->routeDate = $routeDate;
+    public function setTrailDate($trailDate){
+        $this->trailDate = $trailDate;
     }
 
     public function getIdBook(){
