@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\StopienKsiazeczki;
+use App\Entity\BookDegree;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method StopienKsiazeczki|null find($id, $lockMode = null, $lockVersion = null)
- * @method StopienKsiazeczki|null findOneBy(array $criteria, array $orderBy = null)
- * @method StopienKsiazeczki[]    findAll()
- * @method StopienKsiazeczki[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method BookDegree|null find($id, $lockMode = null, $lockVersion = null)
+ * @method BookDegree|null findOneBy(array $criteria, array $orderBy = null)
+ * @method BookDegree[]    findAll()
+ * @method BookDegree[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StopienKsiazeczkiRepository extends ServiceEntityRepository
+class BookDegreeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, StopienKsiazeczki::class);
+        parent::__construct($registry, BookDegree::class);
     }
 
     // /**
-    //  * @return StopienKsiazeczki[] Returns an array of StopienKsiazeczki objects
+    //  * @return BookDegree[] Returns an array of BookDegree objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class StopienKsiazeczkiRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?StopienKsiazeczki
+    public function findOneBySomeField($value): ?BookDegree
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')

@@ -5,19 +5,19 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\AdministratorRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TouristRepository")
  */
-class Administrator
+class Tourist
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer", name="idA")
+     * @ORM\Column(type="integer", name="idTu")
      */
-    private $idA;
-
+    private $idTu;
+    
     /**
-     * @ORM\Column(type="text", name="firstName", length=30)
+     * @ORM\Column(type="text", length=30, name="firstName")
      */
     private $firstName;
 
@@ -36,12 +36,16 @@ class Administrator
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="integer", nullable=TRUE, unique=TRUE, name="idB")
+     */
+    private $idB;
 
 
     //Getters & Setters
-    public function getIdA(): ?int
+    public function getIdTu(): ?int
     {
-        return $this->idA;
+        return $this->idTu;
     }
     
     public function getFirstName(){
@@ -68,7 +72,14 @@ class Administrator
     public function getPassword(){
         return $this->password;
     }
-    public function setPassword($password){
+    public function setHaslo($password){
         $this->password = $password;
+    }
+
+    public function getIdB(){
+        return $this->idB;
+    }
+    public function setIdB($idB){
+        $this->idB = $idB;
     }
 }

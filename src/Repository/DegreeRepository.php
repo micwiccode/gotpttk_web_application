@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Stopien;
+use App\Entity\Degree;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Stopien|null find($id, $lockMode = null, $lockVersion = null)
- * @method Stopien|null findOneBy(array $criteria, array $orderBy = null)
- * @method Stopien[]    findAll()
- * @method Stopien[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Degree|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Degree|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Degree[]    findAll()
+ * @method Degree[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class StopienRepository extends ServiceEntityRepository
+class DegreeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Stopien::class);
+        parent::__construct($registry, Degree::class);
     }
 
     // /**
-    //  * @return Stopien[] Returns an array of Stopien objects
+    //  * @return Degree[] Returns an array of Degree objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class StopienRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Stopien
+    public function findOneBySomeField($value): ?Degree
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')

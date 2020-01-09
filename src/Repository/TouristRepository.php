@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Turysta;
+use App\Entity\Tourist;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Turysta|null find($id, $lockMode = null, $lockVersion = null)
- * @method Turysta|null findOneBy(array $criteria, array $orderBy = null)
- * @method Turysta[]    findAll()
- * @method Turysta[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Tourist|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Tourist|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Tourist[]    findAll()
+ * @method Tourist[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TurystaRepository extends ServiceEntityRepository
+class TouristRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Turysta::class);
+        parent::__construct($registry, Tourist::class);
     }
 
     // /**
-    //  * @return Turysta[] Returns an array of Turysta objects
+    //  * @return Tourist[] Returns an array of Tourist objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class TurystaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Turysta
+    public function findOneBySomeField($value): ?Tourist
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')
