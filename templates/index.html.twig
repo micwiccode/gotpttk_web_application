@@ -17,7 +17,11 @@
 	{% endblock %}
 </html></head><body>
 {% block body %}
+{% if logged %}
+	{{ include('headerTourist.html.twig') }}
+{% else %}
 	{{ include('header.html.twig') }}
+{% endif %}
 	<div
 		class="container">
 		{# here we can put some ours views/twig templates #}
