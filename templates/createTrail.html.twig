@@ -14,14 +14,17 @@
 	{% if date is not defined %}
 		{% include('alert.html.twig') with {'title':'Podaj datę odbycia wycieczki', 'buttonText':'Dalej', 'content':'calender'} %}
 	{% endif %}
+
+
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Utwórz trasę</h3>
 			<div class="box">
-				<div class="box__nav">
-					<a class="link button box__nav__button" href='./addSection'>Dodaj odcinek z bazy danych</a>
-					<a class="link button box__nav__button" href='./createOwnSection'>Dodaj własny odcinek</a>
-				</div>
+				<form class="box__nav" action="./addSection" method="get">
+					<input type="hidden" name="endPoint" value="1"/>
+					<input class="link button box__nav__button" type="submit" value="Dodaj odcinek z bazy danych"/>
+					<a class="link button box__nav__button" href="./createOwnSection">Dodaj własny odcinek</a>
+				</form>
 				<div
 					class="box__trail">
 					{# {% if sections %} #}
@@ -29,7 +32,7 @@
 						<div class="box__trail__row box__trail__row--header">
 							{% if date is defined %}
 								<div>{{date}}</div>
-								{% else %}
+							{% else %}
 								<div>Data</div>
 							{% endif %}
 							<div>Punkty</div>
@@ -37,7 +40,9 @@
 						</div>
 						{# {% for section in sections %} #}
 						<div class="box__trail__row">
-							<div>..................................</div>
+							<div>..................................z
+							</div>
+
 							<div>.........</div>
 							<div>.........</div>
 							<button class="box__trail__row__delete_btn">
@@ -58,5 +63,7 @@
 			</div>
 		</div>
 	</div>
+
+
 	{{ include('footer.html.twig') }}
 {% endblock %}

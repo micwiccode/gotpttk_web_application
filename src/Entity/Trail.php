@@ -21,10 +21,6 @@ class Trail
      */
     private $sumOfPointsGOT;
 
-    /**
-     * @ORM\Column(type="float", name="trailLength", precision=10)
-     */
-    private $trailLength;
 
     /**
      * @ORM\Column(type="boolean", name="hasSectionsOutOfBase")
@@ -58,13 +54,6 @@ class Trail
     }
     public function setSumOfPointsGOT($sumOfPointsGOT){
         $this->sumOfPointsGOT = $sumOfPointsGOT;
-    }
-
-    public function getTrailLength(){
-        return $this->trailLength;
-    }
-    public function setTrailLength($trailLength){
-        $this->trailLength = $trailLength;
     }
 
     public function getHasSectionsOutOfBase(){

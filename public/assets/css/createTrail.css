@@ -29,7 +29,7 @@
   font-size: 0.7em;
 }
 
-.box__nav__button:first-of-type {
+.box__nav__button:first-child {
   margin-right: 0;
 }
 

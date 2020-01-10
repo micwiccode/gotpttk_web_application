@@ -23,7 +23,7 @@ class SectionController extends AbstractController
   }
 
   /**
-   * @Route("/addSection")
+   * @Route("/addSection", methods={"GET"})
    */
   public function addSection(SessionInterface $session)
   {
