@@ -6,7 +6,14 @@
 	<link href="{{ asset('../public/assets/css/createRoute.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-	{{ include('header.html.twig') }}
+	{% if logged %}
+		{{ include('headerTourist.html.twig') }}
+	{% else %}
+		{{ include('header.html.twig') }}
+	{% endif %}
+	{% if date is not defined %}
+		{% include('alert.html.twig') with {'title':'Podaj datę odbycia wycieczki', 'buttonText':'Dalej', 'content':'calender'} %}
+	{% endif %}
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Utwórz trasę</h3>
@@ -20,23 +27,19 @@
 					{# {% if sections %} #}
 					<div class="box__route__grid">
 						<div class="box__route__row box__route__row--header">
-							<div>19.02.2019r</div>
+							{% if date is defined %}
+								<div>{{date}}</div>
+								{% else %}
+								<div>Data</div>
+							{% endif %}
 							<div>Punkty</div>
 							<div>Grupa górska</div>
 						</div>
 						{# {% for section in sections %} #}
 						<div class="box__route__row">
-							<div>19.02.2019r</div>
-							<div>Punkty</div>
-							<div>Grupa górska</div>
-							<button class="box__route__row__delete_btn">
-								<div id="cross"></div>
-							</button>
-						</div>
-						<div class="box__route__row">
-							<div>19.02.2019r</div>
-							<div>Punkty</div>
-							<div>Grupa górska</div>
+							<div>..................................</div>
+							<div>.........</div>
+							<div>.........</div>
 							<button class="box__route__row__delete_btn">
 								<div id="cross"></div>
 							</button>

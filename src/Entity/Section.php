@@ -49,6 +49,11 @@ class Section
      */
     private $idG;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=TRUE, name="isOutOfBase")
+     */
+    private $isOutOfBase;
+
     //Getters & Setters
     public function getIdS(){
         return $this->idS;
@@ -57,6 +62,7 @@ class Section
     public function getPointsGOT(){
         return $this->pointsGOT;
     }
+    
     public function setPointsGOT($pointsGOT){
         $this->pointsGOT = $pointsGOT;
     }
@@ -108,5 +114,15 @@ class Section
     public function getMountainGroupCode()
     {
         return $this->idG->getGroupCode();
+    }
+
+    public function getIsOutOfBase()
+    {
+        return $this->isOutOfBase;
+    }
+
+    public function setIsOutOfBase($isOutOfBase)
+    {
+        return $this->$isOutOfBase= $isOutOfBase;
     }
 }

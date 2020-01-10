@@ -3,13 +3,21 @@
 	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet">
 	<link href="{{ asset('../public/assets/css/index.css') }}" rel="stylesheet">
 	<link href="{{ asset('../public/assets/css/button.css') }}" rel="stylesheet">
-    <link href="{{ asset('../public/assets/css/alert.css') }}" rel="stylesheet">
+	<link href="{{ asset('../public/assets/css/alert.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    <div class="overlay"></div>
-    <div class="box__alert">
-        <a class="box__alert__title">Przepraszamy</a>
-        <a class="box__alert__message">Brak połączenia z serwerem</a>
-        <button class="button box__alert__button" href="">Zamknij</a>
-    </div>
+	<div class="overlay"></div>
+	<div class="box__alert">
+		<p class="box__alert__title">{{title}}</p>
+		{% if content == 'calender' %}
+			<form class="box__alert__form" action="./createTrail" method="POST">
+				<input type="date" name="date" id="date">
+				<input class="button box__alert__button" type="submit" value={{buttonText}}>
+			</form>
+		{% else %}
+			<a class="box__alert__message">{{content}}</a>
+			<a class="button link box__alert__button" href="">{{buttonText}}</a>
+		{% endif %}
+
+	</div>
 {% endblock %}

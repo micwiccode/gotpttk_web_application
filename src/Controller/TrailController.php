@@ -8,21 +8,35 @@ use App\Entity\SectionTrail;
 use App\Entity\Trail;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class TrailController extends AbstractController{
+
   /**
-   * @Route("/createRoute")
+   * @Route("/createTrail", methods={"POST"})
    */
-  public function index(){
+  public function indexWithPost(SessionInterface $session)
+  {
+    $request = Request::createFromGlobals();
+    $date = $request->request->get('date');
     $routes = ["Point1", "Point2"];
-    return $this->render('createRoute.html.twig', array('routes' => $routes));
+    $logged = $session->get('logged');
+    return $this->render('createTrail.html.twig', array('routes' => $routes, 'logged' => $logged, 'date' => $date));
   }
 
   /**
-   * @Route("/routeList")
+   * @Route("/createTrail")
+   */
+  public function index(SessionInterface $session){
+    $routes = ["Point1", "Point2"];
+    $logged = $session->get('logged');
+    return $this->render('createTrail.html.twig', array('routes' => $routes, 'logged' => $logged));
+  }
+
+  /**
+   * @Route("/trailsList")
    */
   public function list(SessionInterface $session){
     $idTu = $session->get('id');
@@ -47,7 +61,7 @@ class TrailController extends AbstractController{
       $sectiones = $doctrine->getRepository(Section::class)->findByIdS(1);
       array_push($sections, $sectiones);
     }*/
-    return $this->render('routeList.html.twig', [
+    return $this->render('trailsList.html.twig', [
       'logged' => $logged, 
       'trails' => $trails, 
       'sections' => $sections

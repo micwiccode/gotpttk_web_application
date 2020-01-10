@@ -13,23 +13,24 @@
 
 .box__alert{
     background-color: var(--white);
-    width: 40%;
+    width: 600px;
     height: 300px;
     z-index: 1000;
     display: flex;
     position: fixed;
-    margin-left: 30%;
-    margin-top: 20%;
+    left: 50vw;
+    top: 50vh;
+    transform: translateX(-300px) translateY(-150px);
     flex-direction: column;
     align-items: center;
     border-radius: 20px;
-    top: 0;
 }
 
 .box__alert__title{
     padding: 12px;
     color: black;
     font-size: x-large;
+    margin: 10px;
 }
 
 .box__alert__message{
@@ -40,4 +41,16 @@
     margin-top: auto;
     margin-bottom: 12px;
 }
+
+.box__alert__form {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+::-webkit-inner-spin-button {
+    display: none;
+}
+
 
