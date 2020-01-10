@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Turysta;
-
+use App\Entity\Tourist;
+use App\Entity\BookDegree;
+use App\Entity\Degree;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
@@ -19,9 +20,18 @@ class BookController extends AbstractController
     $imie = $session->get('imie');
     $nazwisko = $session->get('nazwisko');
     $logged = $session->get('logged');
+    $idB = $this->getDoctrine()->getRepository(Tourist::class)->findOneByIdTu($session->get('id'))->getIdB();
+    $session->set('idB', $idB);
+    $bookDegrees = $this->getDoctrine()->getRepository(BookDegree::class)->findByIdB($idB);
+
+    $degree = new Degree(0,0);
+    foreach($bookDegrees as $bookDegree){
+      $degree = $bookDegree->getIdD();  
+    }
+    $degreeName = $degree->getName();
 
     return $this->render('book.html.twig', [
-      'imie' => $imie, 'nazwisko' => $nazwisko, 'logged' => $logged
+      'imie' => $imie, 'nazwisko' => $nazwisko, 'logged' => $logged, 'degree' => $degreeName
     ]);
   }
 

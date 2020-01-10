@@ -42,7 +42,7 @@ class BookDegree
         return $this->idB;
     }
    
-    public function getIdD(): ?int
+    public function getIdD()
     {
         return $this->idD;
     }

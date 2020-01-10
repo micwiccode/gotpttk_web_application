@@ -84,6 +84,9 @@ class Trail
     public function getTrailDate(){
         return $this->trailDate;
     }
+    public function getTrailDateString(){
+        return $this->trailDate->format('Y-m-d');
+    }
     public function setTrailDate($trailDate){
         $this->trailDate = $trailDate;
     }

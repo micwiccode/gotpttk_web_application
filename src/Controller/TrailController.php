@@ -39,11 +39,12 @@ class TrailController extends AbstractController{
    * @Route("/trailsList")
    */
   public function list(SessionInterface $session){
-    $idTu = $session->get('id');
+    //$idTu = $session->get('id');
     $logged = $session->get('logged');
+    $idB = $session->get('idB');
 
     $doctrine = $this->getDoctrine();
-    $idB = $doctrine->getRepository(Tourist::class)->findOneByIdTu($idTu)->getIdB();
+    //$idB = $doctrine->getRepository(Tourist::class)->findOneByIdTu($idTu)->getIdB();
     $trails = $doctrine->getRepository(Trail::class)->findByIdBook($idB);
     $sectionsTrails = array();
     $sections = array();
