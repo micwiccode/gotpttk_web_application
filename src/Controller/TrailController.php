@@ -21,9 +21,15 @@ class TrailController extends AbstractController{
   {
     $request = Request::createFromGlobals();
     $date = $request->request->get('date');
-    $routes = ["Point1", "Point2"];
+    $idB = $session->get('idB');
+    $trail = new Trail();
+    $trail->setSumOfPointsGOT(0);
+    $trail->setHasSectionsOutOfBase(false);
+    $trail->setIsVerified(false);
+    $trail->setTrailDate(date_parse_from_format('Y-M-d', $date));
+    $trail->setIdBook($idB);
     $logged = $session->get('logged');
-    return $this->render('createTrail.html.twig', array('routes' => $routes, 'logged' => $logged, 'date' => $date));
+    return $this->render('createTrail.html.twig', array('logged' => $logged, 'date' => $date));
   }
 
   /**

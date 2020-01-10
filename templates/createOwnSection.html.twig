@@ -7,7 +7,11 @@
 	<link href="{{ asset('../public/assets/css/createOwnSection.css') }}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-	{{ include('header.html.twig') }}
+	{% if logged %}
+		{{ include('headerTourist.html.twig') }}
+	{% else %}
+		{{ include('header.html.twig') }}
+	{% endif %}
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Dodaj własny odcinek</h3>

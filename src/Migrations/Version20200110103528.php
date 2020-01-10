@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200109232822 extends AbstractMigration
+final class Version20200110103528 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -34,7 +34,7 @@ final class Version20200109232822 extends AbstractMigration
         $this->addSql('CREATE TABLE section (idS INT AUTO_INCREMENT NOT NULL, pointsGOT INT DEFAULT NULL, sectionLength DOUBLE PRECISION DEFAULT NULL, elevationGain DOUBLE PRECISION DEFAULT NULL, isOutOfBase TINYINT(1) DEFAULT NULL, startPoint INT NOT NULL, endPoint INT NOT NULL, idG INT NOT NULL, INDEX IDX_2D737AEF14F8C1F9 (startPoint), INDEX IDX_2D737AEF583207F (endPoint), INDEX IDX_2D737AEF516E532D (idG), PRIMARY KEY(idS)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE section_trail (section_date DATE DEFAULT NULL, idT INT NOT NULL, idS INT NOT NULL, INDEX IDX_253FE2EBD5D012F3 (idT), INDEX IDX_253FE2EB4BB48750 (idS), PRIMARY KEY(idT, idS)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE tourist (idTu INT AUTO_INCREMENT NOT NULL, firstName TINYTEXT NOT NULL, lastName TINYTEXT NOT NULL, login TINYTEXT NOT NULL, password TINYTEXT NOT NULL, idB INT DEFAULT NULL, UNIQUE INDEX UNIQ_9891FEDE2104A7A2 (idB), PRIMARY KEY(idTu)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE trail (idT INT AUTO_INCREMENT NOT NULL, sumOfPointsGOT INT NOT NULL, trailLength DOUBLE PRECISION NOT NULL, hasSectionsOutOfBase TINYINT(1) NOT NULL, is_verified TINYINT(1) NOT NULL, trailDate DATE DEFAULT NULL, idBook INT NOT NULL, INDEX IDX_B268858FB818FDAF (idBook), PRIMARY KEY(idT)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE trail (idT INT AUTO_INCREMENT NOT NULL, sumOfPointsGOT INT NOT NULL, trailLength DOUBLE PRECISION NOT NULL, hasSectionsOutOfBase TINYINT(1) NOT NULL, isVerified TINYINT(1) NOT NULL, trailDate DATE DEFAULT NULL, idBook INT NOT NULL, INDEX IDX_B268858FB818FDAF (idBook), PRIMARY KEY(idT)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE book_degree ADD CONSTRAINT FK_8E7466EE2104A7A2 FOREIGN KEY (idB) REFERENCES book (idB)');
         $this->addSql('ALTER TABLE book_degree ADD CONSTRAINT FK_8E7466EEC8670297 FOREIGN KEY (idD) REFERENCES degree (idD)');
         $this->addSql('ALTER TABLE section ADD CONSTRAINT FK_2D737AEF14F8C1F9 FOREIGN KEY (startPoint) REFERENCES point (idP)');

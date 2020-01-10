@@ -6,10 +6,13 @@
 	<link href="{{ asset('../public/assets/css/line.css') }}" rel="stylesheet">
 	<link href="{{ asset('../public/assets/css/findSection.css') }}" rel="stylesheet">
 	<link href="{{ asset('../public/assets/css/addSection.css') }}" rel="stylesheet">
-
 {% endblock %}
 {% block body %}
-	{{ include('header.html.twig') }}
+	{% if logged %}
+		{{ include('headerTourist.html.twig') }}
+	{% else %}
+		{{ include('header.html.twig') }}
+	{% endif %}
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Przeglądaj odcinki</h3>

@@ -62,7 +62,7 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,2,3,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,7,3,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,8,3,1)');
-        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,6,1,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,1,6,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,9,10,4)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,10,9,4)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,10,11,4)');
@@ -88,9 +88,9 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO tourist (firstName, lastName, login, password, idB) 
                         VALUES ("Jan", "Kowalski", "jan@kowalski.com", "jan", 2)');
 
-        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, is_verified, trailDate, idBook) VALUES (1,10,12.5,false,false,"2020-01-01",1)');
-        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, is_verified, trailDate, idBook) VALUES (2,5,30.0,false,false,"2020-01-04",1)');
-        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, is_verified, idBook) VALUES(3,7,10.0,false,false,2)');
+        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, isVerified, trailDate, idBook) VALUES (1,10,12.5,false,false,"2020-01-01",1)');
+        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, isVerified, trailDate, idBook) VALUES (2,5,30.0,false,false,"2020-01-04",1)');
+        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, isVerified, idBook) VALUES(3,7,10.0,false,false,2)');
 
         $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (1,14)');
         $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (1,15)');
