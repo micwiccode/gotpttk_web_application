@@ -125,4 +125,8 @@ class Section
     {
         return $this->$isOutOfBase= $isOutOfBase;
     }
+
+    public function getIdG(){
+        return $this->idG;
+    }
 }

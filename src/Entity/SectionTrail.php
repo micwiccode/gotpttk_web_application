@@ -36,7 +36,7 @@ class SectionTrail
     }
 
     //Getters & Setters
-    public function getIdT(): ?int
+    public function getIdT()
     {
         return $this->idT;
     }

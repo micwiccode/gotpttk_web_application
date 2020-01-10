@@ -27,12 +27,20 @@
 									<div>Punkty</div>
 									<div>Grupa górska</div>
 								</div>
+								{% for sectionsTrail in sectionsTrails %}
+								{% for sectionTrail in sectionsTrail %}
+								{% if sectionTrail.getIdT == trail %}
 								{% for section in sections %}
+								{% if section.getIdS == sectionTrail.getIdS.getIdS %}
 									<div class="box__trail__row">
-										<div>Nazwa odcinka 1 - nazwa odcinka 2</div>
+										<div>{{section.getStartPoint.getName}} - {{section.getEndPoint.getName}}</div>
 										<div>{{section.getPointsGOT}}</div>
-										<div>T.01</div>
+										<div>{{section.getIdG.getGroupCode}}</div>
 									</div>
+								{% endif %}	
+								{% endfor %}
+								{% endif %}
+								{% endfor %}
 								{% endfor %}
 								
 								<div class="box__trail__row__empty"></div>

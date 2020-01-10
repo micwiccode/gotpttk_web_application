@@ -71,7 +71,8 @@ class TrailController extends AbstractController{
     return $this->render('trailsList.html.twig', [
       'logged' => $logged, 
       'trails' => $trails, 
-      'sections' => $sections
+      'sectionsTrails' => $sectionsTrails,
+      'sections' => $sections,
       ]);
   }
 
