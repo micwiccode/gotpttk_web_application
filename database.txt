@@ -1,8 +1,7 @@
 public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        
-        
+                
         $this->addSql('INSERT INTO mountain_group (idG, name, groupCode) VALUES (1,"TATRY WYSOKIE","T.01")');
         $this->addSql('INSERT INTO mountain_group (idG, name, groupCode) VALUES (2,"TATRY ZACHODNIE","T.02")');
         $this->addSql('INSERT INTO mountain_group (idG, name, groupCode) VALUES (3,"PODTATRZE", "T.03")');
@@ -44,7 +43,7 @@ public function up(Schema $schema) : void
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,2,3,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,7,3,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,8,3,1)');
-        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,6,1,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,6,1,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,9,10,4)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,10,9,4)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,10,11,4)');

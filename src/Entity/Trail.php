@@ -32,7 +32,7 @@ class Trail
     private $hasSectionsOutOfBase;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", name="isVerified")
      */
     private $isVerified;
 
