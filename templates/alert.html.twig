@@ -11,7 +11,7 @@
 		<p class="box__alert__title">{{title}}</p>
 		{% if content == 'calender' %}
 			<form class="box__alert__form" action="./createTrail" method="POST">
-				<input type="date" name="date" id="date">
+				<input type="date" name="date" id="date" required>
 				<input class="button box__alert__button" type="submit" value={{buttonText}}>
 			</form>
 		{% else %}

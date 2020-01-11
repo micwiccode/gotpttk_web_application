@@ -21,40 +21,27 @@
 					<input type="text" name="section_name" placeholder="np. Śnieżka" class="button form__input__name">
 					<select name="section_group" class="button form__input__group">
 						<option value="0">Grupa górska ↓</option>
-						<option value="t01">Tatry Wysokie T.01</option>
-						<option value="t02">Tatry Zachodnie T.02</option>
-						<option value="bz01">Beskid Śląski BZ.01</option>
-						<option value="bz02">Beskid Żywiecki BZ.02</option>
-						<option value="bz03">Beskid Mały BZ.03</option>
-						<option value="bz05">Gorce BZ.05</option>
+						{% for mountain_group in mountain_groups %}
+							<option value="{{mountain_group.idG}}">{{mountain_group.name}}
+								{{mountain_group.groupCode}} </option>
+						{% endfor %}
 					</select>
 				</div>
+				<input type="hidden" name="currentTrailId" value={{currentTrailId}}>
 				<input type="submit" value="Wyszukaj" class="button form__input__btn">
 			</form>
 			<div class="box">
 				<div class="box__zone">
-					<p class="box__zone__name">Tatry Wysokie T.01</p>
 					<span class="line"></span>
-					{% for start_point in start_points %}
-						<div class="box__section">
-							<p class="box__section_begin">Wodogrzmoty Mickiewicza</p>
-							<span class="line"></span>
-							<div class="box__section__row">
-								<div class="box__section__row__end">z Palenicy Białczańskiej</div>
-								<div class="box__section__row__points">4</div>
-								<form action="./createRoute" class="box__section__row__form">
-									<button class="button box__section__row__btn">Dodaj</button>
-								</form>
-							</div>
-							<div class="box__section__row">
-								<div class="box__section__row__end">z Palenicy Białczańskiej</div>
-								<div class="box__section__row__points">4</div>
-								<form action="./createRoute" class="box__section__row__form">
-									<button class="button box__section__row__btn">Dodaj</button>
-								</form>
-							</div>
-						</div>
-					{% endfor %}
+					<div class="box__zone__groups">
+						{% for mountain_group in mountain_groups %}
+							<a href="./addSection_group{{mountain_group.idG}}" class="box__zone__group">
+								{{mountain_group.name}}
+								{{mountain_group.groupCode}}
+							</a>
+						{% endfor %}
+					</div>
+						<span class="line"></span>
 				</div>
 			</div>
 		</div>

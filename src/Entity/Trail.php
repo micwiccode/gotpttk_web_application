@@ -43,6 +43,16 @@ class Trail
      */
     private $idBook;
 
+    public function __construct($idT, $sumOfPointsGOT, $hasSectionsOutOfBase, $isVerified, $trailDate, $idBook)
+    {
+        $this->idT = $idT;
+        $this->sumOfPointsGOT = $sumOfPointsGOT;
+        $this->hasSectionsOutOfBase = $hasSectionsOutOfBase;
+        $this->isVerified = $isVerified;
+        $this->trailDate = $trailDate;
+        $this->idBook = $idBook;
+    }
+
     //Getters & Setters
     public function getIdT(): ?int
     {
@@ -74,7 +84,10 @@ class Trail
         return $this->trailDate;
     }
     public function getTrailDateString(){
-        return $this->trailDate->format('Y-m-d');
+        if($this->trailDate){
+            return $this->trailDate->format('Y-m-d');
+        }
+        else return "Brak daty";
     }
     public function setTrailDate($trailDate){
         $this->trailDate = $trailDate;

@@ -23,13 +23,36 @@ class SectionController extends AbstractController
   }
 
   /**
+   * @Route("/addSection_group{id}")
+   */
+  public function addSectionIdGroup($id, SessionInterface $session)
+  {
+    $logged = $session->get('logged');
+    $doctrine = $this->getDoctrine();
+    $mountainGroup = $doctrine->getRepository(MountainGroup::class)->find($id);
+    $endPoints = $doctrine->getRepository(Section::class)->getDistinctEndPointsFromGroup($id);
+    $startPoints = array();
+    foreach ($endPoints as $endPoint) {
+      $startPointsForEndPoint = $doctrine->getRepository(Section::class)
+        ->findBy(['endPoint' => $endPoint->getEndPoint()]);
+      array_push($startPoints, $startPointsForEndPoint);
+    }
+    return $this->render(
+      'addSectionIdGroup.html.twig',
+      array('mountainGroup' => $mountainGroup, 'endPoints' => $endPoints, 'startPoints' => $startPoints, 'logged' => $logged)
+    );
+  }
+
+  /**
    * @Route("/addSection", methods={"GET"})
    */
   public function addSection(SessionInterface $session)
   {
     $logged = $session->get('logged');
-    $start_points = ["Point1", "Point2"];
-    return $this->render('addSection.html.twig', array('start_points' => $start_points, 'logged' => $logged));
+    $mountain_groups = $this->getDoctrine()->getRepository(MountainGroup::class)->findAll();
+    $request = Request::createFromGlobals();
+    $currentTrailId = $request->request->get('currentTrailId');
+    return $this->render('addSection.html.twig', array('mountain_groups' => $mountain_groups, 'logged' => $logged, 'currentTrailId'=> $currentTrailId));
   }
 
   /**

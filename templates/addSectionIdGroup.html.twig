@@ -16,7 +16,9 @@
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Przeglądaj odcinki</h3>
-			<button class="button form__input__btn"><a href="javascript:history.back()" class="link">Powrót</a></button>
+			<button class="button form__input__btn">
+				<a href="./addSection" class="link">Powrót</a>
+			</button>
 			<div class="box">
 				<div class="box__zone">
 					<p class="box__zone__name">{{mountainGroup.name}}</p>
@@ -33,11 +35,19 @@
 							<div class="box__section__row__end">z
 								{{ startPoint.getStartPointName() }}</div>
 							<div class="box__section__row__points">{{ startPoint.pointsGOT }}</div>
+							<div>
+								<form action="./createTrail" method="POST" class="box__section__row__form">
+									<input type="hidden" value={{startPoint.getIdS()}} name="idS"/>
+									<input type="submit" class="button box__section__row__btn" value="Dodaj"/>
+								</form>
+							</div>
 						</div>
 					{% endfor %}
 				</div>
 			{% endfor %}
 		</div>
+		</div>
+		</div>
 	</div>
-</div>
-</div>{{ include('footer.html.twig') }}{% endblock %}
+	{{ include('footer.html.twig') }}
+{% endblock %}
