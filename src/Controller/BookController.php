@@ -5,6 +5,8 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Tourist;
+use App\Entity\Trail;
+use App\Entity\SectionTrail;
 use App\Entity\BookDegree;
 use App\Entity\Degree;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -30,8 +32,18 @@ class BookController extends AbstractController
     }
     $degreeName = $degree->getName();
 
+    $trails = $this->getDoctrine()->getRepository(Trail::class)->findByIdBook($idB);
+    $sumPoints = 0;
+
+    foreach($trails as $trail){
+      $sectionsTrail = $this->getDoctrine()->getRepository(SectionTrail::class)->findByIdT($trail->getIdT());
+      foreach($sectionsTrail as $sectionTrail){
+        $sumPoints += $sectionTrail->getIdS()->getPointsGOT();
+      }
+    }
+
     return $this->render('book.html.twig', [
-      'imie' => $imie, 'nazwisko' => $nazwisko, 'logged' => $logged, 'degree' => $degreeName
+      'imie' => $imie, 'nazwisko' => $nazwisko, 'logged' => $logged, 'degree' => $degreeName, 'points' => $sumPoints
     ]);
   }
 
