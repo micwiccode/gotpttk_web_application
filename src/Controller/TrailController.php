@@ -64,14 +64,11 @@ class TrailController extends AbstractController
     }
     $sections = null;
     $sumOfPoints = 0;
-    $date = $request->request->get('date');
-    if ($date) {
-      $session->set('date', $date);
-    } else {
-      $date = $session->get('date');
-    }
+    $date = $session->get('date');
+    // return new Response('<html><body><h1>' . $idS.'</h1></body></html>');
     if (isset($idS)) {
-      [$sections, $sumOfPoints] = $this->generateTrail($idS, $session);
+      if($idS == 0) [$sections, $sumOfPoints] = $this->getTrail($session);
+      else [$sections, $sumOfPoints] = $this->generateTrail($idS, $session);
     } else if (isset($deleteSectionKey)) {
       [$sections, $sumOfPoints] = $this->deleteSection($deleteSectionKey, $session);
     } else {
@@ -83,12 +80,28 @@ class TrailController extends AbstractController
   }
 
   /**
-   * @Route("/createTrail")
+   * @Route("/createTrail", name="putDate")
    */
   public function index(SessionInterface $session)
   {
     $logged = $session->get('logged');
     return $this->render('createTrail.html.twig', array('logged' => $logged));
+  }
+
+  /**
+   * @Route("/createTrail_check", methods={"POST"})
+   */
+  public function createTrailCheckDate(SessionInterface $session)
+  {
+    $request = Request::createFromGlobals();
+    $date = $request->request->get('date');
+    if($date){
+      $session->set('date', $date);
+      return $this->forward('App\Controller\TrailController::createTrail');
+    }else{
+      $this->addFlash('date','visible');
+      return $this->redirectToRoute('putDate');
+    }
   }
 
   private function generateTrail($idS, SessionInterface $session)

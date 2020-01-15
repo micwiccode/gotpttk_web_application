@@ -126,4 +126,11 @@
   padding: 10px;
 }
 
+a.form__err {
+  visibility: hidden;
+  font-weight: bold;
+  padding-top: 4px;
+  color: red;
+}
+
 
