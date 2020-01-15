@@ -44,15 +44,27 @@ class Section
     private $endPoint;
 
     /**
+     * @ORM\Column(type="boolean", nullable=TRUE, name="isOutOfBase")
+     */
+    private $isOutOfBase;
+
+    /**
      * @ORM\ManyToOne(targetEntity="MountainGroup")
      * @ORM\JoinColumn(name="idG", referencedColumnName="idG",nullable=FALSE)
      */
     private $idG;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=TRUE, name="isOutOfBase")
-     */
-    private $isOutOfBase;
+    public function __construct($idS, $pointsGOT, $sectionLength, $elevationGain, $startPoint, $endPoint, $isOutOfBase, $idG)
+    {
+        $this->idS = $idS;
+        $this->pointsGOT = $pointsGOT;
+        $this->sectionLength = $sectionLength;
+        $this->elevationGain = $elevationGain;
+        $this->startPoint = $startPoint;
+        $this->endPoint = $endPoint;
+        $this->isOutOfBase = $isOutOfBase;
+        $this->idG = $idG;
+    }
 
     //Getters & Setters
     public function getIdS(){

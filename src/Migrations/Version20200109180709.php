@@ -88,9 +88,9 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO tourist (firstName, lastName, login, password, idB) 
                         VALUES ("Jan", "Kowalski", "jan@kowalski.com", "jan", 2)');
 
-        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, isVerified, trailDate, idBook) VALUES (1,10,12.5,false,false,"2020-01-01",1)');
-        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, isVerified, trailDate, idBook) VALUES (2,5,30.0,false,false,"2020-01-04",1)');
-        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, trailLength, hasSectionsOutOfBase, isVerified, idBook) VALUES(3,7,10.0,false,false,2)');
+        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, hasSectionsOutOfBase, isVerified, trailDate, idBook) VALUES (1,10,false,false,"2020-01-01",1)');
+        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, hasSectionsOutOfBase, isVerified, trailDate, idBook) VALUES (2,5,false,false,"2020-01-04",1)');
+        $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, hasSectionsOutOfBase, isVerified, idBook) VALUES(3,7,false,false,2)');
 
         $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (1,14)');
         $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (1,15)');
