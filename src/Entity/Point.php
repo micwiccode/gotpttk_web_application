@@ -31,7 +31,6 @@ class Point
      */
     private $longitude;
 
-
     //Getters & Setters
     public function getIdP(){
         return $this->idP;
