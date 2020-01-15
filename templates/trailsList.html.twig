@@ -24,7 +24,7 @@
 						<div class="box__trail">
 							<div class="box__trail__grid">
 								<div class="box__trail__row box__trail__row--header">
-									<div>{{dates[i]}}</div>
+									<div>{{trails[i].getTrailDateString}}</div>
 									<div>Punkty</div>
 									<div>Grupa górska</div>
 								</div>
@@ -40,8 +40,14 @@
 								<div class="box__trail__row__empty"></div>
 								<div class="box__trail__row">
 									<a class="sum">Suma punktów: {{sumOfPoints}}</a>
-									<a class="link button box__nav__button" href=''>Modyfikuj trasę</a>
-									<a class="link button box__button" href=''>Usuń trasę</a>
+									<form action="./modifyTrail" method="POST">
+											<input type="hidden" value={{trails[i].getIdT}} name="modifyTrailId"/>
+											<button class="link button box__nav__button" href=''>Modyfikuj trasę</button>
+									</form>
+									<form action="./Delete" method="POST">
+											<input type="hidden" value={{trails[i].getIdT}} name="deleteTrailId"/>
+											<button class="link button box__button" href='' disabled>Usuń trasę</button>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -50,8 +56,6 @@
 				{% else %}
 					{<p class="box__trail__content">Ups.. wygląda na to że nie dodałeś jeszcze żadnej trasy</p>
 				{% endif %}
-				
-            
 				<a class="link button box__button" href="./book">Powrót</a>
 			</div>
 		</div>

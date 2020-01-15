@@ -158,11 +158,9 @@ class TrailController extends AbstractController
     $doctrine = $this->getDoctrine();
     $trails = $doctrine->getRepository(Trail::class)->findBy(array('idBook'=>$idB),array('trailDate'=>'DESC'));
 
-    $dates = array();
     $allTrails = array();
 
     foreach($trails as $trail){
-      array_push($dates, $trail->getTrailDateString());
       $allSectionsTrail = array();
       $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trail->getIdT());
       
@@ -174,9 +172,39 @@ class TrailController extends AbstractController
 
     return $this->render('trailsList.html.twig', [
       'logged' => $logged,
-      'dates' => $dates,
+      'trails' => $trails,
       'allTrails' => $allTrails
     ]);
+  }
+
+  /**
+   * @Route("/modifyTrail", methods={"POST"})
+   */
+  public function modifyTrail(SessionInterface $session)
+  {
+    $request = Request::createFromGlobals();
+    $trailId = $request->request->get('modifyTrailId');
+    //$idB = $session->get('idB');
+    $doctrine = $this->getDoctrine();
+
+    $trail = $doctrine->getRepository(Trail::class)->findOneByIdT($trailId);
+    $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trailId);
+    $sections = array();
+    foreach($sectionsTrail as $sectionTrail){
+      array_push($sections, $sectionTrail->getIdS());
+    }
+    $date = $trail->getTrailDateString();
+    
+    $session->set('date', $date);  
+    $session->set('trail', $trailId);
+
+    $points = $trail->getSumOfPointsGOT();
+
+      //return $this->forward('App\Controller\TrailController::createTrail');
+
+    return $this->render('modifyTrail.html.twig', 
+                          array('logged' => true, 'date' => $date, 'sections' => $sections, 
+                          'sumOfPoints' => $points));
   }
 
   private function createNewSectionTrail($trail, $section)

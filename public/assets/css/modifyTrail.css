@@ -27,11 +27,16 @@
 
 .box__nav__button{
   background-color: var(--second_color);
-  padding: 8px 30px;
+  font-size: 0.7em;
 }
 
 .box__button{
   padding: 8px 30px;
+}
+
+.box__save__button{
+  padding: 8px 30px;
+  background-color: var(--second_color);
 }
 
 .box__trail{
@@ -51,9 +56,10 @@
 
 .box__trail__row {
   display: grid;
-  grid-template-columns: 50% 25% 25%;
+  grid-template-columns: 47% 25% 22% 3% 3%;
   grid-column: 1 / 5;
   font-size: .8em;
+  margin: 4px 0;
 }
 
 .box__trail__row__empty {
@@ -73,9 +79,35 @@
   justify-self: start;
 }
 
-.box__trail__row__delete_btn:focus{
-  outline: none;
+.box__trail__row__delete_btn{
+    position: relative;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+  
+  .box__trail__row__delete_btn:focus{
+    outline: none;
+  }
+
+#cross {
+  background: red;
+  height: 16px;
+  width: 4px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-100%) rotate(45deg);
 }
+
+ #cross:after {
+  background: red;
+  content: "";
+  height: 16px;
+  width: 4px;
+  position: absolute;
+  transform: translateX(-50%) rotate(90deg)
+}  
 
 .sum{
   font-size: 1em;
