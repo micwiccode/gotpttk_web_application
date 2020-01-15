@@ -143,7 +143,7 @@ class TrailController extends AbstractController
     $idB = $session->get('idB');
 
     $doctrine = $this->getDoctrine();
-    $trails = $doctrine->getRepository(Trail::class)->findByIdBook($idB);
+    $trails = $doctrine->getRepository(Trail::class)->findBy(array('idBook'=>$idB),array('trailDate'=>'DESC'));
 
     $dates = array();
     $allTrails = array();

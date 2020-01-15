@@ -75,7 +75,7 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,13,9,4)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,13,14,4)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,14,13,4)');
-        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,11,12,4)');
+        //$this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,11,12,4)');
 
         $this->addSql('INSERT INTO degree (name,  requiredPointsAmount) VALUES ("W góry brązowa", 15)');
         $this->addSql('INSERT INTO book_degree (idB, idD) VALUES (1,1)');
