@@ -37,29 +37,32 @@
 						<label for="section_group" class="form__label">Grupa górska</label>
 						<select name="section_group" class="button form__input form__select">
 							{% for mountainGroup in mountainGroups %}
-							<option value="{{mountainGroup.idG}}">{{mountainGroup.name}}
-								{{mountainGroup.groupCode}}</option>
-							{% endfor %}	
+								<option value="{{mountainGroup.idG}}">{{mountainGroup.name}}
+									{{mountainGroup.groupCode}}</option>
+							{% endfor %}
 						</select>
 					</div>
 					<div class="form__part">
 						<label for="section_length" class="form__label">Długość odcinaka (w km)</label>
-						<input name="section_length" class="button form__input" type="number" min="0">
+<input name="section_length" class="button form__input" type="number" min="0" max="999">
+
 					</div>
 					<div class="form__part">
 						<label for="section_height" class="form__label">Przewyższenie (w m)</label>
-						<input name="section_height" class="button form__input" type="number" min="0">
+<input name="section_height" class="button form__input" type="number" min="0" max="9999">
+
 					</div>
 					<input type="submit" class="button box__button" value="Zapisz odcinek">
-					</form>
-					<form method="POST" action="./createTrail">
-						<button class="button box__button" type="submit">Powrót</button>
-					</form>
-				</div>
+				</form>
+				<form method="POST" action="./createTrail">
+					<input type="hidden" value="0" name="idS"/>
+					<button class="button box__button" type="submit">Powrót</button>
+				</form>
 			</div>
 		</div>
-		{{ include('footer.html.twig') }}
-	{% endblock %}
+	</div>
+	{{ include('footer.html.twig') }}
+{% endblock %}
 {% block javascripts %}
 	<script defer src="../public/assets/js/alertCreateOwnSection.js"></script>
 {% endblock %}

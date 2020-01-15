@@ -3,8 +3,11 @@
 	<div class="box__alert">
 		{% if type == 'calendar' %}
 			<p class="box__alert__title">Podaj datę odbycia wycieczki</p>
-			<form class="box__alert__form" action="./createTrail" method="POST">
-				<input type="date" name="date" id="date" required>
+			<form class="box__alert__form" action="./createTrail_check" method="POST">
+				<input type="date" name="date" id="date" >
+				<a class="form__err" name="dateErr"
+					style="visibility: {% for message in app.flashes('date') %}
+					{{message}}{% endfor %};">Powyższe pole jest wymagane aby kontynuować</a>
 				<input class="button box__alert__button" type="submit" value='Dalej'>
 			</form>
 		{% endif %}
@@ -22,7 +25,9 @@
 			<p class="box__alert__title">SUKCES</p>
 			<div class="box__alert__message">Trasa zosatała dodana pomyślnie</div>
 			<div class="box__alert__buttons">
-				<button id="back_btn_back" class="button box__alert__button">Zamknij</button>
+				<form action="./trailsList">
+					<button class="button box__alert__button">OK</button>
+				</form>
 			</div>
 		{% endif %}
 		{% if type == 'alert_failure' %}
