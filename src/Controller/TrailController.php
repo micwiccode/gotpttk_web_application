@@ -80,34 +80,30 @@ class TrailController extends AbstractController
    */
   public function list(SessionInterface $session)
   {
-    //$idTu = $session->get('id');
     $logged = $session->get('logged');
     $idB = $session->get('idB');
 
     $doctrine = $this->getDoctrine();
-    //$idB = $doctrine->getRepository(Tourist::class)->findOneByIdTu($idTu)->getIdB();
     $trails = $doctrine->getRepository(Trail::class)->findByIdBook($idB);
-    $sectionsTrails = array();
-    $sections = array();
 
-    foreach ($trails as $trail) {
+    $dates = array();
+    $allTrails = array();
+
+    foreach($trails as $trail){
+      array_push($dates, $trail->getTrailDateString());
+      $allSectionsTrail = array();
       $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trail->getIdT());
-      foreach ($sectionsTrail as $sectionTrail) {
-        array_push($sections, $sectionTrail->getIdS());
+      
+      foreach($sectionsTrail as $sectionTrail){
+        array_push($allSectionsTrail, $sectionTrail->getIdS());
       }
-      array_push($sectionsTrails, $sectionsTrail);
+      array_push($allTrails, $allSectionsTrail);
     }
 
-    /*$sections = array();
-    foreach($sectionsTrails as $sectionsTrail){
-      $sectiones = $doctrine->getRepository(Section::class)->findByIdS(1);
-      array_push($sections, $sectiones);
-    }*/
     return $this->render('trailsList.html.twig', [
       'logged' => $logged,
-      'trails' => $trails,
-      'sectionsTrails' => $sectionsTrails,
-      'sections' => $sections,
+      'dates' => $dates,
+      'allTrails' => $allTrails
     ]);
   }
 
