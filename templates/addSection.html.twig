@@ -16,10 +16,10 @@
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Przeglądaj odcinki</h3>
-			<form action="#" method="POST" class="form">
+			<form action="./addSection_result" method="POST" class="form">
 				<div class="form__fields">
-					<input type="text" name="section_name" placeholder="np. Śnieżka" class="button form__input__name">
-					<select name="section_group" class="button form__input__group">
+					<input type="text" name="sectionName" placeholder="np. Śnieżka" class="button form__input__name">
+					<select name="sectionGroup" class="button form__input__group">
 						<option value="0">Grupa górska ↓</option>
 						{% for mountainGroup in mountainGroups %}
 							<option value="{{mountainGroup.idG}}">{{mountainGroup.name}}

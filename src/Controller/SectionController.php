@@ -47,7 +47,7 @@ class SectionController extends AbstractController
   /**
    * @Route("/findSection_result", methods={"POST"})
    */
-  public function findSectionForm(SessionInterface $session)
+  public function findSectionResult(SessionInterface $session)
   {
     $logged = $session->get('logged');
     $request = Request::createFromGlobals();
@@ -88,6 +88,20 @@ class SectionController extends AbstractController
       'addSectionIdGroup.html.twig',
       array('mountainGroup' => $mountainGroup, 'endPoints' => $endPoints, 'startPoints' => $startPoints, 'logged' => $logged)
     );
+  }
+
+  /**
+   * @Route("/addSection_result", methods={"POST"})
+   */
+  public function addSectionResult(SessionInterface $session)
+  {
+    $logged = $session->get('logged');
+    $request = Request::createFromGlobals();
+    $sectionName = $request->request->get('sectionName');
+    $sectionGroup = $request->request->get('sectionGroup');
+    $doctrine = $this->getDoctrine();
+    $results = $doctrine->getRepository(Section::class)->findByNameAndGroup($sectionName, $sectionGroup);
+    return $this->render('addSectionResult.html.twig', array('results' => $results, 'logged' => $logged));
   }
 
   /**
