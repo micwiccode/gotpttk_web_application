@@ -31,7 +31,7 @@ class TrailController extends AbstractController
       if ($this->isTrailValid($session)) {
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->find($idB);
-        $trail = new Trail(0, false, false, false, date_create($date), $book);
+        $trail = new Trail(0, $sumOfPoints, false, false, date_create($date), $book);
         $entityManager->persist($trail);
         $entityManager->flush();
         $trail = $entityManager->getRepository(Trail::class)->find($trail->getIdT());
@@ -58,6 +58,10 @@ class TrailController extends AbstractController
     $request = Request::createFromGlobals();
     $deleteSectionKey = $request->request->get('deleteSectionKey');
     $idS = $request->request->get('idS'); 
+    $modyfying = $session->get('modyfying');
+    if(isset($modyfying)){
+      return $this->redirectToRoute('modify', ['request' => $request], 307);
+    }
     if(!isset($idS)) {
       $idS = $session->get('ownSectionId');
       $session->set('ownSectionId', null);
@@ -85,6 +89,7 @@ class TrailController extends AbstractController
   public function index(SessionInterface $session)
   {
     $logged = $session->get('logged');
+    $session->remove('modyfying');
     return $this->render('createTrail.html.twig', array('logged' => $logged));
   }
 
@@ -152,6 +157,8 @@ class TrailController extends AbstractController
    */
   public function list(SessionInterface $session)
   {
+    $session->remove('currentSectionsArray');
+    $session->remove('modyfying');
     $logged = $session->get('logged');
     $idB = $session->get('idB');
 
@@ -178,33 +185,94 @@ class TrailController extends AbstractController
   }
 
   /**
-   * @Route("/modifyTrail", methods={"POST"})
+   * @Route("/modifyTrail", methods={"POST"}, name="modify")
    */
   public function modifyTrail(SessionInterface $session)
   {
+    $session->set('modyfying', true);
     $request = Request::createFromGlobals();
     $trailId = $request->request->get('modifyTrailId');
+    $deleteSectionKey = $request->request->get('deleteSectionKey');
+    $idS = $request->request->get('idS');
+    $sections = $session->get('currentSectionsArray');
+    $date = $session->get('date');
+    $sumOfPoints = $session->get('sumOfPoints');
     //$idB = $session->get('idB');
     $doctrine = $this->getDoctrine();
-
-    $trail = $doctrine->getRepository(Trail::class)->findOneByIdT($trailId);
-    $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trailId);
-    $sections = array();
-    foreach($sectionsTrail as $sectionTrail){
-      array_push($sections, $sectionTrail->getIdS());
+    if(!isset($idS)) {
+      $idS = $session->get('ownSectionId');
+      $session->set('ownSectionId', null);
     }
-    $date = $trail->getTrailDateString();
-    
-    $session->set('date', $date);  
-    $session->set('trail', $trailId);
-
-    $points = $trail->getSumOfPointsGOT();
+    if(isset($idS)){
+	    if($idS==0) [$sections,$sumOfPoint] = $this->getTrail($session);
+	    else [$sections, $sumOfPoints] = $this->generateTrail($idS, $session);
+    }
+    else if (isset($deleteSectionKey)) {
+      [$sections, $sumOfPoints] = $this->deleteSection($deleteSectionKey, $session);
+    } 
+    else if (!isset($sections)){
+      $trail = $doctrine->getRepository(Trail::class)->findOneByIdT($trailId);
+      $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trailId);
+      $sections = array();
+      foreach($sectionsTrail as $sectionTrail){
+        array_push($sections, $sectionTrail->getIdS());
+      }
+      $session->set('currentSectionsArray', $sections);
+      $date = $trail->getTrailDateString();
+      $sumOfPoints = $trail->getSumOfPointsGOT();
+      
+      $session->set('sumOfPoints', $sumOfPoints);
+      $session->set('date', $date);  
+      $session->set('trail', $trailId);
+    }
 
       //return $this->forward('App\Controller\TrailController::createTrail');
+    //$sections = $session->get('currentSectionsArray');
+    if(empty($sections)) 
+      return $this->render('modifyTrail.html.twig', 
+                            array('logged' => true, 'date' => $date, 
+                            'sumOfPoints' => $sumOfPoints));
+    else
+      return $this->render('modifyTrail.html.twig', 
+                            array('logged' => true, 'date' => $date, 'sections' => $sections, 
+                            'sumOfPoints' => $sumOfPoints));
+  }
 
-    return $this->render('modifyTrail.html.twig', 
-                          array('logged' => true, 'date' => $date, 'sections' => $sections, 
-                          'sumOfPoints' => $points));
+  /**
+   * @Route("/modifyTrail_save", methods={"POST"})
+   */
+  public function modifyTrailSave(SessionInterface $session)
+  {
+    [$sections, $sumOfPoints] = $this->getTrail($session);
+    $logged = $session->get('logged');
+    $date = $session->get('date');
+
+    if (empty($sections)) return $this->render('modifyTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'noSections' => true));
+    if ($this->isTrailValid($session)) {
+
+      $entityManager = $this->getDoctrine()->getManager();
+      $idT = $session->get('trail');
+      $trail = $entityManager->getRepository(Trail::class)->findOneByIdT($idT);
+      $trail->setHasSectionsOutOfBase($this->hasSectionsOutOfBase($sections));
+      $trail->setSumOfPointsGOT($sumOfPoints);
+      $entityManager->flush();
+      
+      $this->deleteSectionTrail($idT);
+
+      foreach($sections as $currentSection){
+        $section = $entityManager->getRepository(Section::class)->find($currentSection->getIdS());
+        $this->createNewSectionTrail($trail, $section);
+      }
+    } else {
+      return $this->render('modifyTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'failure' => true));
+    }
+    $session->remove('modyfying');
+    $session->remove('trail');
+    $session->remove('date');
+    $session->remove('ownSectionId');
+    $session->remove('sumOfPoints');
+
+    return $this->render('modifyTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'success' => true));
   }
 
   private function createNewSectionTrail($trail, $section)
@@ -213,5 +281,31 @@ class TrailController extends AbstractController
     $sectionTrail = new SectionTrail($trail, $section);
     $entityManager->persist($sectionTrail);
     $entityManager->flush();
+  }
+
+  private function deleteSectionTrail($idT){
+    $sectionsTrail = $this->getDoctrine()->getRepository(SectionTrail::class)->findByIdT($idT);
+    $entityManager = $this->getDoctrine()->getManager();
+    foreach($sectionsTrail as $sectionTrail){
+      $section = $sectionTrail->getIdS();
+      if($section->getIsOutOfBase()){
+        $entityManager->remove($section->getStartPoint());
+        $entityManager->remove($section->getEndPoint());
+        $entityManager->remove($section);
+      }
+      $entityManager->remove($sectionTrail);
+    }
+    $entityManager->flush();
+  }
+
+  private function hasSectionsOutOfBase($sections)
+  {
+    $outOfBase = false;
+    foreach($sections as $section){
+      if($section->getIsOutOfBase()){
+        $outOfBase = true;
+      }
+    }
+    return $outOfBase;
   }
 }

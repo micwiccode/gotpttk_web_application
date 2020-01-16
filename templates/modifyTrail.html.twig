@@ -60,7 +60,7 @@
 									<div>{{section.getMountainGroupName()}}
 										{{section.getMountainGroupCode()}}</div>
 									<div>
-										<form action="./createTrail" method="POST">
+										<form action="./modifyTrail" method="POST">
 											<input type="hidden" value={{key}} name="deleteSectionKey"/>
 											<button class="box__trail__row__delete_btn">
 												<div id="cross"></div>
@@ -68,7 +68,7 @@
 										</form>
 									</div>
 									<div>
-										<form action="./createTrail" method="POST">
+										<form action="./modifyTrail" method="POST">
 											<input type="hidden" value={{key}} name="deleteSectionKey"/>
 											<button class="box__trail__row__delete_btn">
 												<div id="cross"></div>
@@ -77,18 +77,17 @@
 									</div>
 								</div>
 							{% endfor %}
-							<div class="box__trail__row__empty"></div>
-							<div class="box__trail__row">
-								<a class="sum">Suma punktów: {{sumOfPoints}}</a>
-								<form class="form" action="./modifyTrail_save" method="POST">
-									<input type="submit" value="Zapisz zmiany" class="button box__save__button">
-								</form>
-								<button id="cancel_btn" class="link button box__button ">Anuluj zmiany</button>
-							</div>
-							
 						{% else %}
-							<p class="box__trail__content">Ups.. wygląda na to, że usunąłeś już wszystkie odcinki z trasy</p>
+							<p class="box__trail__content">Ups.. wygląda na to, że usunąłeś wszystkie odcinki z trasy</p>
 						{% endif %}
+						<div class="box__trail__row__empty"></div>
+						<div class="box__trail__row">
+							<a class="sum">Suma punktów: {{sumOfPoints}}</a>
+							<form class="form" action="./modifyTrail_save" method="POST">
+								<input type="submit" value="Zapisz zmiany" class="button box__save__button">
+							</form>
+							<button id="cancel_btn" class="link button box__button ">Anuluj zmiany</button>
+						</div>
 					</div>
 				</div>
 			</div>

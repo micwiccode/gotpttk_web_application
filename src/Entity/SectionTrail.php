@@ -11,14 +11,14 @@ class SectionTrail
 {
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="Trail")
+     * @ORM\ManyToOne(targetEntity="Trail", inversedBy="idT")
      * @ORM\JoinColumn(name="idT", referencedColumnName="idT", nullable=FALSE)
      */
     private $idT;
 
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="Section")
+     * @ORM\ManyToOne(targetEntity="Section", inversedBy="idS")
      * @ORM\JoinColumn(name="idS", referencedColumnName="idS", nullable=FALSE)
      */
     private $idS;
