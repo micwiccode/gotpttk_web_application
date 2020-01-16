@@ -51,17 +51,57 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO point (idP, name) VALUES (12, "Ostry (712 m)")');
         $this->addSql('INSERT INTO point (idP, name) VALUES (13, "Mała Czantoria (864 m)")');
         $this->addSql('INSERT INTO point (idP, name) VALUES (14, "Czantoria Wielka (995 m)")');
-        $this->addSql('INSERT INTO point (idP, name) VALUES (15, "Wisła - Jawornik")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (15, "Rusinowa Polana (1170-1300 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (16, "Łysa Polana")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (17, "Gęsia Szyja (1489m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (18, "Rówień Waksmundzka")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (19, "Psia Trawka")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (20, "Dolina za Mnichem (1785-2100 m")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (21, "Szpiglasowa Przełęcz (2110 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (22, "Schronisko PTTK w Dolinie Pięciu Stawów Polskich (1671m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (23, "Siklawa")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (24, "Kozi Wierch (2291 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (25, "Kozia Przełęcz (2137 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (26, "Przełęcz Zawrat (2159 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (27, "Świnica (2301 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (28, "Świnicka Przełęcz (2050 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (29, "Kozia Dolinka")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (30, "Żleb Kulczyńskiego")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (31, "Skrajny Granat (2225 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (32, "Przełęcz Krzyżne (2114 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (33, "Przełęcz Krab (1853 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (34, "Dwoiśniak")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (35, "Schronisko PTTK na Hali Gąsienicowej (1500 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (36, "Dolina Filipka")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (37, "Wierch Poroniec (1036m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (38, "Czerwony Staw w Dolinie Pańszczyzny (1654 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (39, "Brzeziny")'); //T.03
+        $this->addSql('INSERT INTO point (idP, name) VALUES (40, "Wrota Chałubińskiego (2022 m)")');
+        //$this->addSql('INSERT INTO point (idP, name) VALUES (41, "Dwoiśniak")');//do usunięcia
+        $this->addSql('INSERT INTO point (idP, name) VALUES (42, "Szpiglasowy Wierch (2172 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (43, "Tablica S. Bronikowskiego (1740m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (44, "Czarny Staw Gąsienicowy (1624 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (45, "Przełęcz Liliowe (1952 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (46, "Zielony Staw Gąsienicowy (1672 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (47, "Kościelec (2156m)")');
+
 
         $this->addSql('SET FOREIGN_KEY_CHECKS=0');
 
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,4,1,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,1,4,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,5,1,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,1,5,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,6,1,1)');
-        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,1,2,1)');
-        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,2,3,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,1,2,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,2,1,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,2,2,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,2,3,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,3,2,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,7,3,1)');
-        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,8,3,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (13,3,7,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,8,3,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (10,3,8,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,1,6,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,9,10,4)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,10,9,4)');
@@ -75,6 +115,119 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,13,9,4)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,13,14,4)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,14,13,4)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,36,15,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,15,36,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,37,15,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,15,37,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,4,15,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,15,4,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,5,15,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,15,5,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,37,16,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,16,37,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,18,16,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,16,18,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,19,18,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,18,19,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,5,18,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,18,5,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,38,18,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,18,38,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (7,35,18,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,18,35,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,35,19,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (7,19,35,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,39,19,1)');//ktora grupa?
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,19,39,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,2,20,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,20,2,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,40,20,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,20,40,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,42,21,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,21,42,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,43,21,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,21,43,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,20,21,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,21,20,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,23,22,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,22,23,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (9,2,22,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,22,2,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,43,23,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,23,43,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (11,1,23,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,23,1,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,23,24,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,24,23,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,25,24,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,43,25,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,25,43,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,29,25,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,25,29,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,26,25,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,44,26,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,26,44,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (7,43,26,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,26,43,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,26,27,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,27,26,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,28,27,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,27,28,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,45,28,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,28,45,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,46,28,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,28,46,1)');
+        
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,44,29,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,29,44,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,30,29,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,24,30,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,29,30,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,30,29,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,29,31,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,30,31,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,44,31,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,31,44,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (9,22,32,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,32,22,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,38,32,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,32,38,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,31,32,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,47,33,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,33,47,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,46,33,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,33,46,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,44,33,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,33,44,1)');
+        
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,45,34,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,34,45,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,35,34,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,34,35,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (1,46,34,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,34,46,1)');
+
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,44,35,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,35,44,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,38,35,1)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (6,35,38,1)');
+
+
         //$this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,11,12,4)');
 
         $this->addSql('INSERT INTO degree (name,  requiredPointsAmount) VALUES ("W góry brązowa", 15)');
