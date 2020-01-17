@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class LoginController extends AbstractController
 {
   /**
-   * @Route("/login")
+   * @Route("/login", name="login")
    */
   public function index()
   {

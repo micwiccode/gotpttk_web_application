@@ -22,6 +22,9 @@ class BookController extends AbstractController
     $imie = $session->get('imie');
     $nazwisko = $session->get('nazwisko');
     $logged = $session->get('logged');
+    if(!isset($logged)){
+      return $this->redirectToRoute('login');
+    }
     $idB = $this->getDoctrine()->getRepository(Tourist::class)->findOneByIdTu($session->get('id'))->getIdB();
     $session->set('idB', $idB);
     $bookDegrees = $this->getDoctrine()->getRepository(BookDegree::class)->findByIdB($idB);
@@ -36,10 +39,11 @@ class BookController extends AbstractController
     $sumPoints = 0;
 
     foreach($trails as $trail){
-      $sectionsTrail = $this->getDoctrine()->getRepository(SectionTrail::class)->findByIdT($trail->getIdT());
-      foreach($sectionsTrail as $sectionTrail){
-        $sumPoints += $sectionTrail->getIdS()->getPointsGOT();
-      }
+      $sumPoints+=$trail->getSumOfPointsGOT();
+      //$sectionsTrail = $this->getDoctrine()->getRepository(SectionTrail::class)->findByIdT($trail->getIdT());
+      //foreach($sectionsTrail as $sectionTrail){
+        //$sumPoints += $sectionTrail->getIdS()->getPointsGOT();
+      //}
     }
 
     return $this->render('book.html.twig', [

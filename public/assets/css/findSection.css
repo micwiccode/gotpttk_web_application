@@ -24,7 +24,7 @@
 .form__input__name {
   background-color: white;
   color: var(--black);
-  width: 70%;
+  width: 80%;
   margin-right: 20px;
 }
 
@@ -35,8 +35,8 @@
 .form__input__group {
   background-color: var(--second_color);
   color: var(--white);
-  width: 20%;
-  padding: 1% 1%;
+  width: 230px;
+  padding: 1px 1px;
   text-align-last:center;
   appearance: none;
   -webkit-appearance: none;
@@ -50,7 +50,7 @@
   background-color: var(--black);
   color: var(--white);
   margin: 20px auto;
-  padding: 1% 3%;
+  padding: 8px auto;
 }
 
 .box {
@@ -90,6 +90,6 @@
   margin-bottom: .8em;
 }
 
-.box__section__result:first-child {
+.box__section > div:first-child {
   font-weight: bold;
 }
