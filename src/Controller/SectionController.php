@@ -152,4 +152,76 @@ class SectionController extends AbstractController
     }
     else return $this->render('createOwnSection.html.twig', array('mountainGroups' => $mountainGroups, 'logged' => $logged));
   }
+
+   /**
+   * @Route("/modifyOwnSectionSave", methods="POST")
+   */
+  public function modifyOwnSectionSave(SessionInterface $session)
+  {
+    $request = Request::createFromGlobals();
+    $sectionBegin = $request->request->get('section_begin');
+    $sectionEnd = $request->request->get('section_end');
+    $sectionGroupId = $request->request->get('section_group');
+    $sectionLength = $request->request->get('section_length');
+    $sectionHeight = $request->request->get('section_height');
+    $idS = $request->request->get('idS');
+    $idSP = $request->request->get('idSP');
+    $idEP = $request->request->get('idEP');
+
+
+   
+    $sectionBegin = filter_var($sectionBegin, FILTER_SANITIZE_STRING);
+    $sectionEnd = filter_var($sectionEnd, FILTER_SANITIZE_STRING);
+    $sectionLength = filter_var($sectionLength, FILTER_VALIDATE_INT);
+    $sectionHeight = filter_var($sectionHeight, FILTER_VALIDATE_INT);
+    $entityManager = $this->getDoctrine()->getManager();
+    $pointsGOT = floor($sectionLength/1000) + floor($sectionHeight/100);
+    
+    $doctrine = $this->getDoctrine();
+    $startPoint = $doctrine->getRepository(Point::class)->findOneByIdP($idSP);
+    $endPoint = $doctrine->getRepository(Point::class)->findOneByIdP($idEP);
+    $section = $doctrine->getRepository(Section::class)->findOneByIdS($idS);
+
+    $startPoint->setName($sectionBegin);
+    $endPoint->setName($sectionEnd);
+    $section->setSectionLength($sectionLength);
+    $section->setElevationGain($sectionHeight);
+
+    $group = $entityManager->getRepository(MountainGroup::class)->find($sectionGroupId);
+    $section->setIdG($group);
+    $section->setPointsGOT($pointsGOT);
+    
+    $entityManager->flush();
+
+    return $this->redirectToRoute('modify', array('modifiedIdS' => $idS), 307);
+  }
+
+  /**
+   * @Route("/modifyOwnSection", methods="POST", name="modify_own")
+   */
+  public function modifyOwnSection(SessionInterface $session, $error=false)
+  {
+    $logged = $session->get('logged');
+    $request = Request::createFromGlobals();
+    $idSP = $request->request->get('startPoint');
+    $idEP = $request->request->get('endPoint');
+    $idG = $request->request->get('idG');
+
+    $doctrine = $this->getDoctrine();
+    $startPoint = $doctrine->getRepository(Point::class)->findOneByIdP($idSP);
+    $endPoint = $doctrine->getRepository(Point::class)->findOneByIdP($idEP);
+    
+    $length = $request->request->get('length');
+    $elevation = $request->request->get('elevation');
+    $idS = $request->request->get('idS');
+    $mountainGroups = $this->getDoctrine()->getRepository(MountainGroup::class)->findAll();
+    if ($error){
+      return $this->render('modifyOwnSection.html.twig', array('mountainGroups' => $mountainGroups, 'logged' => $logged, 'alertEmptyFields' => true));
+    }
+    else return $this->render('modifyOwnSection.html.twig', array('mountainGroups' => $mountainGroups, 'logged' => $logged,
+                      'startPoint'=>$startPoint, 'endPoint'=>$endPoint, 'length'=>$length, 'elevation'=>$elevation, 
+                      'idGroup'=>$idG, 'idS'=>$idS, 'idSP'=>$idSP, 'idEP'=>$idEP));
+  }
+
+
 }

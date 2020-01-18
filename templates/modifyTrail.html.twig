@@ -68,10 +68,19 @@
 										</form>
 									</div>
 									<div>
-										<form action="./modifyTrail" method="POST">
-											<input type="hidden" value={{key}} name="deleteSectionKey"/>
-											<button class="box__trail__row__delete_btn">
-												<div id="cross"></div>
+										<form action="./modifyOwnSection" method="POST">
+											<input type="hidden" value={{key}} name="modifySectionKey"/>
+											<input type="hidden" value={{section.getStartPoint().getIdP()}} name="startPoint"/>
+											<input type="hidden" value={{section.getEndPoint().getIdP()}} name="endPoint"/>
+											<input type="hidden" value={{section.getIdS()}} name="idS"/>
+											<input type="hidden" value={{section.getIdG().getIdG()}} name="idG"/>
+											<input type="hidden" value={{section.getSectionLength()}} name="length"/>
+											<input type="hidden" value={{section.getElevationGain()}} name="elevation"/>
+											<button class="box__trail__row__delete_btn"
+											{% if section.getIsOutOfBase() %} style="visibility: visible;" 
+											{% else %} style="visibility: hidden;"
+											{% endif %}>
+												<img src="./assets/img/modifyIcon.png"  width="16" height="16">
 											</button>
 										</form>
 									</div>
