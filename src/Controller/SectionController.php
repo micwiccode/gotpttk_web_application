@@ -14,10 +14,10 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class SectionController extends AbstractController
 {
   /**
-   * @Route("/findSection")
+   * @Route("/findSection", name="findSection")
    */
   public function findSection(SessionInterface $session)
-  {
+  {    
     $logged = $session->get('logged');
     $mountainGroups = $this->getDoctrine()->getRepository(MountainGroup::class)->findAll();
     return $this->render('findSection.html.twig', array('mountainGroups' => $mountainGroups, 'logged' => $logged));
@@ -52,6 +52,10 @@ class SectionController extends AbstractController
     $logged = $session->get('logged');
     $request = Request::createFromGlobals();
     $sectionName = $request->request->get('sectionName');
+    if($sectionName == ''){
+      $this->addFlash('noNameError','visible');      
+      return $this->redirectToRoute('findSection');
+    }
     $sectionGroup = $request->request->get('sectionGroup');
     $doctrine = $this->getDoctrine();
     $results = $doctrine->getRepository(Section::class)->findByNameAndGroup($sectionName, $sectionGroup);

@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="content">
 			<h3 class="content__title">Przeglądaj odcinki</h3>
-			<form class="form" method="post" action='./findSection_result' >
+			<form class="form" method="post" action='./findSection_result'>
 				<div class="form__fields">
 					<input type="text" name="sectionName" placeholder="np. Śnieżka" class="button form__input__name">
 					<select name="sectionGroup" class="button form__input__group">
@@ -26,6 +26,8 @@
 						{% endfor %}
 					</select>
 				</div>
+				<a class="form__err" name="emailErr" style="visibility: {% for message in app.flashes('noNameError') %}
+										{{message}}{% endfor %};">Powyższe pole jest wymagane do wyszukania odcinka</a>
 				<input type="submit" value="Wyszukaj" class="button form__input__btn">
 			</form>
 			<div class="box">
@@ -39,7 +41,7 @@
 							</a>
 						{% endfor %}
 					</div>
-						<span class="line"></span>
+					<span class="line"></span>
 				</div>
 			</div>
 		</div>

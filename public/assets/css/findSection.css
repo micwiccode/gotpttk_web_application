@@ -93,3 +93,12 @@
 .box__section > div:first-child {
   font-weight: bold;
 }
+
+a.form__err {
+  visibility: hidden;
+  font-weight: bold;
+  padding-top: 4px;
+  color: red;
+  width: 100%;
+  text-align: center;
+}

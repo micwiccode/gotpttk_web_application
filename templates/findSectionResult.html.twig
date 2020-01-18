@@ -16,7 +16,7 @@
 		<div class="content">
 			<h3 class="content__title">Przeglądaj odcinki</h3>
 			<button class="button form__input__btn">
-				<a href="javascript:history.back()" class="link">Powrót</a>
+				<a href="./findSection" class="link">Powrót</a>
 			</button>
 			<div class="box">
 				<div class="box__zone">
@@ -50,7 +50,9 @@
 								</div>
 							{% endfor %}
 						{% else %}
-							<p>Żaden odcinek nie pasuje do kryteriów wyszukiwania</p>
+						<p>UPS.. :( </p>
+						<p>Niestety żaden z odcinków nie spełnia kryteriów wyszukiwania.</p>
+						<p>Brak szukanego odcinka. Spróbuj ponownie.</p>
 						{% endif %}
 					</div>
 				</div>
