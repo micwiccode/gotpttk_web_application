@@ -19,7 +19,11 @@ class SectionRepository extends ServiceEntityRepository
         parent::__construct($registry, Section::class);
     }
 
-    public function getDistinctEndPointsFromGroup($idG): array
+    /**
+     * @param Int $idG
+     * @return array
+     */
+    public function getDistinctEndPointsFromGroup(Int $idG): array
     {
         $qb = $this->createQueryBuilder('s')
             ->where('s.idG = :idG')
@@ -32,7 +36,12 @@ class SectionRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    public function findByNameAndGroup($sectionName, $sectionGroup): array
+    /**
+     * @param String $sectionName
+     * @param Int $sectionGroup
+     * @return array
+     */
+    public function findByNameAndGroup(String $sectionName, Int $sectionGroup): array
     {
         if($sectionGroup){
             $qb = $this->createQueryBuilder('section')

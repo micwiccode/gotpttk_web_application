@@ -15,7 +15,9 @@ class SectionController extends AbstractController
 {
   /**
    * @Route("/findSection", name="findSection")
-   */
+   * @param SessionInterface $session
+   * @return void
+  */
   public function findSection(SessionInterface $session)
   {    
     $logged = $session->get('logged');
@@ -25,8 +27,11 @@ class SectionController extends AbstractController
 
   /**
    * @Route("/findSection_group{id}")
-   */
-  public function findSectionIdGroup($id, SessionInterface $session)
+   * @param Int $id
+   * @param SessionInterface $session
+   * @return void
+  */
+  public function findSectionIdGroup(Int $id, SessionInterface $session)
   {
     $logged = $session->get('logged');
     $doctrine = $this->getDoctrine();
@@ -46,7 +51,9 @@ class SectionController extends AbstractController
 
   /**
    * @Route("/findSection_result", methods={"POST"})
-   */
+   * @param SessionInterface $session
+   * @return void
+  */
   public function findSectionResult(SessionInterface $session)
   {
     $logged = $session->get('logged');
@@ -64,7 +71,9 @@ class SectionController extends AbstractController
 
   /**
    * @Route("/addSection", methods={"GET"})
-   */
+   * @param SessionInterface $session
+   * @return void
+  */
   public function addSection(SessionInterface $session)
   {
     $logged = $session->get('logged');
@@ -75,8 +84,11 @@ class SectionController extends AbstractController
 
   /**
    * @Route("/addSection_group{id}")
-   */
-  public function addSectionIdGroup($id, SessionInterface $session)
+    * @param Int $id
+    * @param SessionInterface $session
+    * @return void
+  */
+  public function addSectionIdGroup(Int $id, SessionInterface $session)
   {
     $logged = $session->get('logged');
     $doctrine = $this->getDoctrine();
@@ -96,7 +108,9 @@ class SectionController extends AbstractController
 
   /**
    * @Route("/addSection_result", methods={"POST"})
-   */
+   * @param SessionInterface $session
+   * @return void
+  */
   public function addSectionResult(SessionInterface $session)
   {
     $logged = $session->get('logged');
@@ -110,6 +124,8 @@ class SectionController extends AbstractController
 
   /**
    * @Route("/createOwnSection", methods="POST")
+   * @param SessionInterface $session
+   * @return void
    */
   public function createOwnSectionSave(SessionInterface $session)
   {
@@ -146,6 +162,9 @@ class SectionController extends AbstractController
 
   /**
    * @Route("/createOwnSection")
+   * @param SessionInterface $session
+   * @param boolean $error
+   * @return void
    */
   public function createOwnSection(SessionInterface $session, $error=false)
   {
@@ -159,7 +178,9 @@ class SectionController extends AbstractController
 
    /**
    * @Route("/modifyOwnSectionSave", methods="POST")
-   */
+    * @param SessionInterface $session
+    * @return void
+  */
   public function modifyOwnSectionSave(SessionInterface $session)
   {
     $request = Request::createFromGlobals();
@@ -202,7 +223,10 @@ class SectionController extends AbstractController
 
   /**
    * @Route("/modifyOwnSection", methods="POST", name="modify_own")
-   */
+    * @param SessionInterface $session
+    * @param boolean $error
+    * @return void
+  */
   public function modifyOwnSection(SessionInterface $session, $error=false)
   {
     $logged = $session->get('logged');

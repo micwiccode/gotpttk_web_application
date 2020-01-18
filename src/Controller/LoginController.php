@@ -16,6 +16,7 @@ class LoginController extends AbstractController
 {
   /**
    * @Route("/login", name="login")
+   * @return void
    */
   public function index()
   {
@@ -26,6 +27,7 @@ class LoginController extends AbstractController
 
   /**
    * @Route("/resetPassword")
+   * @return void
    */
   public function resetPassword()
   {
@@ -34,6 +36,7 @@ class LoginController extends AbstractController
 
   /**
    * @Route("/verifyLogin", methods={"POST"})
+   * @return void
    */
   public function verifyLogin()
   {

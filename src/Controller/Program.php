@@ -6,8 +6,10 @@
 
   class Program extends AbstractController {
   /**
-  * @Route("/")
-  */
+    * @Route("/")
+   * @param SessionInterface $session
+   * @return void
+   */
     public function index(SessionInterface $session)
   {
     $logged = $session->get('logged');

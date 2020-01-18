@@ -18,13 +18,15 @@ class TrailController extends AbstractController
 {
   /**
    * @Route("/createTrail_save", methods={"POST"})
+   * @param SessionInterface $session
+   * @return void
    */
   public function createTrailSave(SessionInterface $session)
   {
     $logged = $session->get('logged');
     $idB = $session->get('idB');
     $date = $session->get('date');
-    [$sections, $sumOfPoints] = $this->getTrail($session);
+    [$sections, $sumOfPoints] = $this->getTrails($session);
 
     if ($logged) {
       if (empty($sections)) return $this->render('createTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'noSections' => true));
@@ -51,6 +53,8 @@ class TrailController extends AbstractController
 
   /**
    * @Route("/createTrail", methods={"POST"}, name="trailsView")
+   * @param SessionInterface $session
+   * @return void
    */
   public function createTrail(SessionInterface $session)
   {
@@ -69,9 +73,8 @@ class TrailController extends AbstractController
     $sections = null;
     $sumOfPoints = 0;
     $date = $session->get('date');
-    // return new Response('<html><body><h1>' . $idS.'</h1></body></html>');
     if (isset($idS)) {
-      if($idS == 0) [$sections, $sumOfPoints] = $this->getTrail($session);
+      if($idS == 0) [$sections, $sumOfPoints] = $this->getTrails($session);
       else [$sections, $sumOfPoints] = $this->generateTrail($idS, $session);
     } else if (isset($deleteSectionKey)) {
       [$sections, $sumOfPoints] = $this->deleteSection($deleteSectionKey, $session);
@@ -84,7 +87,9 @@ class TrailController extends AbstractController
   }
 
   /**
-   * @Route("/createTrail", name="putDate")
+   * @Route("/createTrail", name="createTrail")
+   * @param SessionInterface $session
+   * @return void
    */
   public function index(SessionInterface $session)
   {
@@ -95,8 +100,10 @@ class TrailController extends AbstractController
 
   /**
    * @Route("/createTrail_check", methods={"POST"})
+   * @param SessionInterface $session
+   * @return void
    */
-  public function createTrailCheckDate(SessionInterface $session)
+  public function checkDate(SessionInterface $session)
   {
     $request = Request::createFromGlobals();
     $date = $request->request->get('date');
@@ -105,30 +112,44 @@ class TrailController extends AbstractController
       return $this->forward('App\Controller\TrailController::createTrail');
     }else{
       $this->addFlash('date','visible');
-      return $this->redirectToRoute('putDate');
+      return $this->redirectToRoute('createTrail');
     }
   }
 
-  private function generateTrail($idS, SessionInterface $session)
+  /**
+   * @param int $idS
+   * @param SessionInterface $session
+   * @return void
+  */
+  private function generateTrail(int $idS, SessionInterface $session)
   {
     $entityManager = $this->getDoctrine()->getManager();
     $currentSectionsArray = $session->get('currentSectionsArray');
     $section = $entityManager->getRepository(Section::class)->find($idS);
     array_push($currentSectionsArray, $section);
     $session->set('currentSectionsArray', $currentSectionsArray);
-    return $this->getTrail($session);
+    return $this->getTrails($session);
   }
 
-  private function deleteSection($deleteSectionKey, SessionInterface $session)
+  /**
+   * @param int $deleteSectionKey
+   * @param SessionInterface $session
+   * @return void
+   */
+  private function deleteSection(int $deleteSectionKey, SessionInterface $session)
   {
     $currentSectionsArray = $session->get('currentSectionsArray');
     unset($currentSectionsArray[$deleteSectionKey]);
     $currentSectionsArray = array_values($currentSectionsArray);
     $session->set('currentSectionsArray', $currentSectionsArray);
-    return $this->getTrail($session);
+    return $this->getTrails($session);
   }
 
-  private function getTrail(SessionInterface $session)
+  /**
+   * @param SessionInterface $session
+   * @return void
+   */
+  private function getTrails(SessionInterface $session)
   {
     $currentSectionsArray = $session->get('currentSectionsArray');
     $sumOfPoints = 0;
@@ -138,6 +159,10 @@ class TrailController extends AbstractController
     return (array($currentSectionsArray, $sumOfPoints));
   }
 
+  /**
+   * @param SessionInterface $session
+   * @return boolean
+   */
   private function isTrailValid(SessionInterface $session)
   {
     $currentSectionsArray = $session->get('currentSectionsArray');
@@ -154,6 +179,8 @@ class TrailController extends AbstractController
 
   /**
    * @Route("/trailsList")
+   * @param SessionInterface $session
+   * @return void
    */
   public function list(SessionInterface $session)
   {
@@ -186,6 +213,8 @@ class TrailController extends AbstractController
 
   /**
    * @Route("/modifyTrail", methods={"POST"}, name="modify")
+   * @param SessionInterface $session
+   * @return void
    */
   public function modifyTrail(SessionInterface $session)
   {
@@ -208,7 +237,7 @@ class TrailController extends AbstractController
         $session->set('ownSectionId', null);
       }
       if(isset($idS)){
-	      if($idS==0) [$sections,$sumOfPoint] = $this->getTrail($session);
+	      if($idS==0) [$sections,$sumOfPoint] = $this->getTrails($session);
 	      else [$sections, $sumOfPoints] = $this->generateTrail($idS, $session);
       }
       else if (isset($deleteSectionKey)) {
@@ -222,7 +251,7 @@ class TrailController extends AbstractController
           array_push($sections, $sectionTrail->getIdS());
         }
         $session->set('currentSectionsArray', $sections);
-        $date = $trail->getTrailDateString();
+        $date = $trail->getTrailsDateString();
         $sumOfPoints = $trail->getSumOfPointsGOT();
 
         $session->set('sumOfPoints', $sumOfPoints);
@@ -242,10 +271,12 @@ class TrailController extends AbstractController
 
   /**
    * @Route("/modifyTrail_save", methods={"POST"})
+   * @param SessionInterface $session
+   * @return void
    */
   public function modifyTrailSave(SessionInterface $session)
   {
-    [$sections, $sumOfPoints] = $this->getTrail($session);
+    [$sections, $sumOfPoints] = $this->getTrails($session);
     $logged = $session->get('logged');
     $date = $session->get('date');
 
@@ -277,7 +308,12 @@ class TrailController extends AbstractController
     return $this->render('modifyTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'success' => true));
   }
 
-  private function createNewSectionTrail($trail, $section)
+  /**
+   * @param Trail $trail
+   * @param Section $section
+   * @return void
+   */
+  private function createNewSectionTrail(Trail $trail, Section $section)
   {
     $entityManager = $this->getDoctrine()->getManager();
     $sectionTrail = new SectionTrail($trail, $section);
@@ -285,7 +321,11 @@ class TrailController extends AbstractController
     $entityManager->flush();
   }
 
-  private function deleteSectionTrail($idT){
+  /**
+   * @param int $idT
+   * @return void
+   */
+  private function deleteSectionTrail(int $idT){
     $sectionsTrail = $this->getDoctrine()->getRepository(SectionTrail::class)->findByIdT($idT);
     $entityManager = $this->getDoctrine()->getManager();
     foreach($sectionsTrail as $sectionTrail){
@@ -300,6 +340,10 @@ class TrailController extends AbstractController
     $entityManager->flush();
   }
 
+  /**
+   * @param Section[] $sections
+   * @return boolean
+   */
   private function hasSectionsOutOfBase($sections)
   {
     $outOfBase = false;
@@ -311,7 +355,12 @@ class TrailController extends AbstractController
     return $outOfBase;
   }
 
-  private function sectionModified($idS, SessionInterface $session)
+  /**
+   * @param integer $idS
+   * @param SessionInterface $session
+   * @return void
+   */
+  private function sectionModified(int $idS, SessionInterface $session)
   {
     $currentSectionsArray = $session->get('currentSectionsArray');
     for($i=0; $i<count($currentSectionsArray); $i++){
@@ -321,6 +370,6 @@ class TrailController extends AbstractController
       }
     }
     $session->set('currentSectionsArray', $currentSectionsArray);
-    return $this->getTrail($session);
+    return $this->getTrails($session);
   }
 }

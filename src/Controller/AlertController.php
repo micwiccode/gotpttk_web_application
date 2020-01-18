@@ -10,6 +10,7 @@ class AlertController extends AbstractController
 {
   /**
    * @Route("/alert")
+   * @return void
    */
   public function index()
   {

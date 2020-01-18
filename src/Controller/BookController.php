@@ -16,6 +16,8 @@ class BookController extends AbstractController
 {
   /**
    * @Route("/book")
+   * @param SessionInterface $session
+   * @return void
    */
   public function index(SessionInterface $session)
   {
@@ -50,9 +52,6 @@ class BookController extends AbstractController
       'imie' => $imie, 'nazwisko' => $nazwisko, 'logged' => $logged, 'degree' => $degreeName, 'points' => $sumPoints
     ]);
   }
-
-
-
   /*public function id($id)
   {
     $repository = $this->getDoctrine()->getRepository(Turysta::class);

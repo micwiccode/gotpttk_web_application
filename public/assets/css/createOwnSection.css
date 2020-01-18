@@ -33,13 +33,11 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: var(--white_with_alpha);
 }
 
 .form__part{
   display: flex;
   margin-bottom: 2%;
-  margin-left: 10%;
 }
 
 .form__part:last-of-type {
