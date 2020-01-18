@@ -141,4 +141,7 @@ class Section
     public function getIdG(){
         return $this->idG;
     }
+    public function setIdG($idG){
+        $this->idG = $idG;
+    }
 }

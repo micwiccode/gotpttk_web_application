@@ -194,40 +194,42 @@ class TrailController extends AbstractController
     $trailId = $request->request->get('modifyTrailId');
     $deleteSectionKey = $request->request->get('deleteSectionKey');
     $idS = $request->request->get('idS');
+    $modifiedIdS = $request->query->get('modifiedIdS');
     $sections = $session->get('currentSectionsArray');
     $date = $session->get('date');
     $sumOfPoints = $session->get('sumOfPoints');
     //$idB = $session->get('idB');
     $doctrine = $this->getDoctrine();
-    if(!isset($idS)) {
-      $idS = $session->get('ownSectionId');
-      $session->set('ownSectionId', null);
-    }
-    if(isset($idS)){
-	    if($idS==0) [$sections,$sumOfPoint] = $this->getTrail($session);
-	    else [$sections, $sumOfPoints] = $this->generateTrail($idS, $session);
-    }
-    else if (isset($deleteSectionKey)) {
-      [$sections, $sumOfPoints] = $this->deleteSection($deleteSectionKey, $session);
-    } 
-    else if (!isset($sections)){
-      $trail = $doctrine->getRepository(Trail::class)->findOneByIdT($trailId);
-      $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trailId);
-      $sections = array();
-      foreach($sectionsTrail as $sectionTrail){
-        array_push($sections, $sectionTrail->getIdS());
+    if(isset($modifiedIdS)){
+        [$sections, $sumOfPoints] = $this->sectionModified($modifiedIdS, $session);
+      } else {
+      if(!isset($idS)) {
+        $idS = $session->get('ownSectionId');
+        $session->set('ownSectionId', null);
       }
-      $session->set('currentSectionsArray', $sections);
-      $date = $trail->getTrailDateString();
-      $sumOfPoints = $trail->getSumOfPointsGOT();
-      
-      $session->set('sumOfPoints', $sumOfPoints);
-      $session->set('date', $date);  
-      $session->set('trail', $trailId);
-    }
+      if(isset($idS)){
+	      if($idS==0) [$sections,$sumOfPoint] = $this->getTrail($session);
+	      else [$sections, $sumOfPoints] = $this->generateTrail($idS, $session);
+      }
+      else if (isset($deleteSectionKey)) {
+        [$sections, $sumOfPoints] = $this->deleteSection($deleteSectionKey, $session);
+      } 
+      else if (!isset($sections)){
+        $trail = $doctrine->getRepository(Trail::class)->findOneByIdT($trailId);
+        $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trailId);
+        $sections = array();
+        foreach($sectionsTrail as $sectionTrail){
+          array_push($sections, $sectionTrail->getIdS());
+        }
+        $session->set('currentSectionsArray', $sections);
+        $date = $trail->getTrailDateString();
+        $sumOfPoints = $trail->getSumOfPointsGOT();
 
-      //return $this->forward('App\Controller\TrailController::createTrail');
-    //$sections = $session->get('currentSectionsArray');
+        $session->set('sumOfPoints', $sumOfPoints);
+        $session->set('date', $date);  
+        $session->set('trail', $trailId);
+      }
+   }
     if(empty($sections)) 
       return $this->render('modifyTrail.html.twig', 
                             array('logged' => true, 'date' => $date, 
@@ -307,5 +309,18 @@ class TrailController extends AbstractController
       }
     }
     return $outOfBase;
+  }
+
+  private function sectionModified($idS, SessionInterface $session)
+  {
+    $currentSectionsArray = $session->get('currentSectionsArray');
+    for($i=0; $i<count($currentSectionsArray); $i++){
+      if($currentSectionsArray[$i]->getIdS() == $idS){
+        $doctrine = $this->getDoctrine();
+        $currentSectionsArray[$i] = $doctrine->getRepository(Section::class)->findOneByIdS($idS);
+      }
+    }
+    $session->set('currentSectionsArray', $currentSectionsArray);
+    return $this->getTrail($session);
   }
 }
