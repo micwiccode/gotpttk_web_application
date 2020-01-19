@@ -19,3 +19,14 @@ To load data to database
 Copy content of ```database.text``` to new migration file up method and run
 ```php bin/console doctrine:migrations:execute --up [number of your file]``` eg.
 ```php bin/console doctrine:migrations:execute --up 20200103154637```
+
+TESTS
+Look here https://symfony.com/doc/current/testing.html
+Install dependencies by
+```composer require --dev symfony/phpunit-bridge```
+and 
+```php bin/phpunit```
+Your test put in tests folder
+To run test do ```php bin/phpunit```
+or ```php bin/phpunit/[path to the file you want to test]```
+eg. ```php bin/phpunit tests/Controller/TrailController.php```
