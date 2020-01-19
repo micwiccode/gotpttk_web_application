@@ -37,9 +37,11 @@ class TrailController extends AbstractController
         $entityManager->flush();
         $trail = $entityManager->getRepository(Trail::class)->find($trail->getIdT());
         $currentSectionsArray = $session->get('currentSectionsArray');
+        $sectionNumber = 0;
         foreach ($currentSectionsArray as $currentSection) {
           $section = $entityManager->getRepository(Section::class)->find($currentSection->getIdS());
-          $this->createNewSectionTrail($trail, $section);
+          $this->createNewSectionTrail($trail, $section, $sectionNumber);
+          $sectionNumber++;
         }
       } else {
         if (empty($sections)) return $this->render('createTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'noSections' => true));
@@ -197,7 +199,7 @@ class TrailController extends AbstractController
 
     foreach($trails as $trail){
       $allSectionsTrail = array();
-      $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trail->getIdT());
+      $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trail->getIdT(), array('sectionNo'=>'ASC'));
       
       foreach($sectionsTrail as $sectionTrail){
         array_push($allSectionsTrail, $sectionTrail->getIdS());
@@ -246,13 +248,13 @@ class TrailController extends AbstractController
       } 
       else if (!isset($sections)){
         $trail = $doctrine->getRepository(Trail::class)->findOneByIdT($trailId);
-        $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trailId);
+        $sectionsTrail = $doctrine->getRepository(SectionTrail::class)->findByIdT($trailId, array('sectionNo'=>'ASC'));
         $sections = array();
         foreach($sectionsTrail as $sectionTrail){
           array_push($sections, $sectionTrail->getIdS());
         }
         $session->set('currentSectionsArray', $sections);
-        $date = $trail->getTrailsDateString();
+        $date = $trail->getTrailDateString();
         $sumOfPoints = $trail->getSumOfPointsGOT();
 
         $session->set('sumOfPoints', $sumOfPoints);
@@ -291,11 +293,12 @@ class TrailController extends AbstractController
       $trail->setSumOfPointsGOT($sumOfPoints);
       $entityManager->flush();
       
-      $this->deleteSectionTrail($idT);
-
+      $this->deleteSectionTrail($idT, $session);
+      $sectionNumber = 0;
       foreach($sections as $currentSection){
-        $section = $entityManager->getRepository(Section::class)->find($currentSection->getIdS());
-        $this->createNewSectionTrail($trail, $section);
+        $section = $this->getDoctrine()->getRepository(Section::class)->findOneByIdS($currentSection->getIdS());
+        $this->createNewSectionTrail($trail, $section, $sectionNumber);
+        $sectionNumber++;
       }
     } else {
       return $this->render('modifyTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'failure' => true));
@@ -312,12 +315,14 @@ class TrailController extends AbstractController
   /**
    * @param Trail $trail
    * @param Section $section
+   * @param int $sectionNumber
    * @return void
    */
-  private function createNewSectionTrail(Trail $trail, Section $section)
+  private function createNewSectionTrail(Trail $trail, Section $section, int $sectionNumber)
   {
     $entityManager = $this->getDoctrine()->getManager();
     $sectionTrail = new SectionTrail($trail, $section);
+    $sectionTrail->setSectionNo($sectionNumber);
     $entityManager->persist($sectionTrail);
     $entityManager->flush();
   }
@@ -326,17 +331,26 @@ class TrailController extends AbstractController
    * @param int $idT
    * @return void
    */
-  private function deleteSectionTrail(int $idT){
+  private function deleteSectionTrail(int $idT, SessionInterface $session){
     $sectionsTrail = $this->getDoctrine()->getRepository(SectionTrail::class)->findByIdT($idT);
     $entityManager = $this->getDoctrine()->getManager();
+    $sections = $session->get('currentSectionsArray');
     foreach($sectionsTrail as $sectionTrail){
-      $section = $sectionTrail->getIdS();
-      if($section->getIsOutOfBase()){
-        $entityManager->remove($section->getStartPoint());
-        $entityManager->remove($section->getEndPoint());
-        $entityManager->remove($section);
+      $flag = true;
+      foreach($sections as $section){
+        if($section->getIdS() == $sectionTrail->getIdS()->getIdS()){
+          $flag = false;
+        }
       }
-      $entityManager->remove($sectionTrail);
+      if($flag){
+        $section = $sectionTrail->getIdS();
+        if($section->getIsOutOfBase()){
+          $entityManager->remove($section->getStartPoint());
+          $entityManager->remove($section->getEndPoint());
+          $entityManager->remove($section);
+        }
+      }
+    $entityManager->remove($sectionTrail);
     }
     $entityManager->flush();
   }

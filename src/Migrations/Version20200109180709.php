@@ -245,13 +245,13 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, hasSectionsOutOfBase, isVerified, trailDate, idBook) VALUES (2,5,false,false,"2020-01-04",1)');
         $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, hasSectionsOutOfBase, isVerified, idBook) VALUES(3,7,false,false,2)');
 
-        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (1,14)');
-        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (1,15)');
+        $this->addSql('INSERT INTO section_trail (idT, idS, section_no) VALUES (1,14,0)');
+        $this->addSql('INSERT INTO section_trail (idT, idS, section_no) VALUES (1,15,1)');
 
-        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (2,9)');
+        $this->addSql('INSERT INTO section_trail (idT, idS, section_no) VALUES (2,9,0)');
 
-        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (3,19)');
-        $this->addSql('INSERT INTO section_trail (idT, idS) VALUES (3,20)');
+        $this->addSql('INSERT INTO section_trail (idT, idS, section_no) VALUES (3,19,0)');
+        $this->addSql('INSERT INTO section_trail (idT, idS, section_no) VALUES (3,20,1)');
         $this->addSql('SET FOREIGN_KEY_CHECKS=1'); 
     }
     public function down(Schema $schema) : void

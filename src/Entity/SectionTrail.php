@@ -24,9 +24,9 @@ class SectionTrail
     private $idS;
 
     /**
-     * @ORM\Column(type="date", nullable=TRUE)
+     * @ORM\Column(type="integer", nullable=false)
      */
-    private $sectionDate;
+    private $sectionNo;
 
 
     public function __construct($idT, $idS)
@@ -45,12 +45,12 @@ class SectionTrail
         return $this->idS;
     }
 
-    public function getSectionDate()
+    public function getSectionNo()
     {
-        return $this->sectionDate;
+        return $this->sectionNo;
     }
-    public function setSectionDate($sectionDate)
+    public function setSectionNo($sectionNo)
     {
-        $this->sectionDate = $sectionDate;
+        $this->sectionNo = $sectionNo;
     }
 }
