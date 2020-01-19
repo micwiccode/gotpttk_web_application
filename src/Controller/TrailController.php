@@ -18,6 +18,8 @@ use Symfony\Component\VarDumper\Cloner\Data;
 class TrailController extends AbstractController
 {
   /**
+   * Main method rendering the content of /createTrail
+   * 
    * @Route("/createTrail", methods={"POST"}, name="trailsView")
    * @param SessionInterface $session
    * @return void
@@ -41,7 +43,7 @@ class TrailController extends AbstractController
     $date = $session->get('date');
     if (isset($idS)) {
       if($idS == 0) [$sections, $sumOfPoints] = $this->getTrails($session);
-      else [$sections, $sumOfPoints] = $this->generateTrail($idS, $session);
+      else [$sections, $sumOfPoints] = $this->addNewSectionForTrail($idS, $session);
     } else if (isset($deleteSectionKey)) {
       [$sections, $sumOfPoints] = $this->deleteSection($deleteSectionKey, $session);
     } else {
@@ -53,6 +55,8 @@ class TrailController extends AbstractController
   }
 
   /**
+   * Method rendering the welcome screen with data input and content of /createTrail
+   * 
    * @Route("/createTrail", name="createTrail")
    * @param SessionInterface $session
    * @return void
@@ -65,6 +69,8 @@ class TrailController extends AbstractController
   }
 
   /**
+   * Method rendering the content after save action click for /createTrail
+   * 
    * @Route("/createTrail_save", methods={"POST"})
    * @param SessionInterface $session
    * @return void
@@ -98,7 +104,7 @@ class TrailController extends AbstractController
   }
 
   /** 
-   * Undocumented function
+   * Method creates new trail
    *
    * @param Int $idB
    * @param String $date
@@ -116,6 +122,8 @@ class TrailController extends AbstractController
   }
 
   /**
+   * Method creates new section trail
+   * 
    * @param Trail $trail
    * @param Section $section
    * @param Int $sectionNumber
@@ -131,6 +139,8 @@ class TrailController extends AbstractController
   }
 
   /**
+   * Method removes section trail
+   * 
    * @param Int $idT
    * @return void
    */
@@ -160,6 +170,8 @@ class TrailController extends AbstractController
   }
 
   /**
+   * Meethod checkes if date input is valid
+   * 
    * @Route("/createTrail_check", methods={"POST"})
    * @param SessionInterface $session
    * @return void
@@ -178,11 +190,13 @@ class TrailController extends AbstractController
   }
 
   /**
+   * Method adds new section for current trail
+   * 
    * @param Int $idS
    * @param SessionInterface $session
    * @return void
   */
-  private function generateTrail(Int $idS, SessionInterface $session)
+  private function addNewSectionForTrail(Int $idS, SessionInterface $session)
   {
     $entityManager = $this->getDoctrine()->getManager();
     $currentSectionsArray = $session->get('currentSectionsArray');
@@ -193,6 +207,8 @@ class TrailController extends AbstractController
   }
 
   /**
+   * Method deletes section
+   * 
    * @param Int $deleteSectionKey
    * @param SessionInterface $session
    * @return void
@@ -207,7 +223,7 @@ class TrailController extends AbstractController
   }
 
   /**
-   * Undocumented function
+   * Method generates list of sections with their sum of GOT points
    *
    * @param SessionInterface $session
    * @return array
@@ -223,7 +239,7 @@ class TrailController extends AbstractController
   }
 
   /**
-   * Undocumented function
+   * Method checkes if trail is valid
    *
    * @param SessionInterface $session
    * @return boolean
@@ -304,7 +320,7 @@ class TrailController extends AbstractController
       }
       if(isset($idS)){
 	      if($idS==0) [$sections,$sumOfPoint] = $this->getTrails($session);
-	      else [$sections, $sumOfPoints] = $this->generateTrail($idS, $session);
+	      else [$sections, $sumOfPoints] = $this->addNewSectionForTrail($idS, $session);
       }
       else if (isset($deleteSectionKey)) {
         [$sections, $sumOfPoints] = $this->deleteSection($deleteSectionKey, $session);
