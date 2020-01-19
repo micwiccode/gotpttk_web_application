@@ -29,7 +29,6 @@ class TrailController extends AbstractController
     [$sections, $sumOfPoints] = $this->getTrails($session);
 
     if ($logged) {
-      if (empty($sections)) return $this->render('createTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'noSections' => true));
       if ($this->isTrailValid($session)) {
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->find($idB);
@@ -43,7 +42,8 @@ class TrailController extends AbstractController
           $this->createNewSectionTrail($trail, $section);
         }
       } else {
-        return $this->render('createTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'failure' => true));
+        if (empty($sections)) return $this->render('createTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'noSections' => true));
+        else return $this->render('createTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'failure' => true));
       }
     } else {
       return $this->render('createTrail.html.twig', array('logged' => $logged, 'date' => $date, 'sections' => $sections, 'sumOfPoints' => $sumOfPoints, 'logToSave' => true));
@@ -163,10 +163,11 @@ class TrailController extends AbstractController
    * @param SessionInterface $session
    * @return boolean
    */
-  private function isTrailValid(SessionInterface $session)
+  public function isTrailValid(SessionInterface $session)
   {
     $currentSectionsArray = $session->get('currentSectionsArray');
     $isValid = true;
+    if(empty($currentSectionsArray)) $isValid = false;
     $sectionsIds = array();
     foreach ($currentSectionsArray as $currentSection) {
       array_push($sectionsIds, $currentSection->getIdS());

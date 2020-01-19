@@ -26,6 +26,13 @@ class MountainGroup
      */
     private $groupCode;
 
+    public function __construct($idG, $name, $groupCode)
+    {
+        $this->idG = $idG;
+        $this->name = $name;
+        $this->groupCode = $groupCode;
+    }
+
     //Getters & Setters
     public function getIdG(){
         return $this->idG;
