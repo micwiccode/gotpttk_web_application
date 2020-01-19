@@ -31,7 +31,7 @@ class SectionController extends AbstractController
    * @param SessionInterface $session
    * @return void
   */
-  public function findSectionIdGroup(Int $id, SessionInterface $session)
+  public function findSectionIdGroup(int $id, SessionInterface $session)
   {
     $logged = $session->get('logged');
     $doctrine = $this->getDoctrine();
@@ -193,8 +193,6 @@ class SectionController extends AbstractController
     $idSP = $request->request->get('idSP');
     $idEP = $request->request->get('idEP');
 
-
-   
     $sectionBegin = filter_var($sectionBegin, FILTER_SANITIZE_STRING);
     $sectionEnd = filter_var($sectionEnd, FILTER_SANITIZE_STRING);
     $sectionLength = filter_var($sectionLength, FILTER_VALIDATE_INT);

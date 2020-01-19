@@ -83,4 +83,54 @@ class Trail extends TestCase
     $result = $trailController->isTrailValid($session);
     $this->assertEquals(false, $result);
   }
+
+  public function testGetTrails()
+  {
+    $trailController = new TrailController();
+    $session = new Session(new MockArraySessionStorage());
+
+    $startPoint = new Point();
+    $startPoint->setName('Kozi Wierch');
+    $endPoint = new Point();
+    $endPoint->setName('Smocza Jama');
+    $mountainGroup = new MountainGroup(11, 'TATRY WYSOKIE', 'T.01');
+
+    $sectionsArray = array();
+    $session->set('currentSectionsArray', $sectionsArray);
+
+    $result = $trailController->getTrails($session);
+    $expectedResult = array(array(), 0);
+    $this->assertEquals($expectedResult, $result);
+
+    $section1 = new Section(1, 1, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
+    
+    $sectionsArray = array($section1);
+    $session->set('currentSectionsArray', $sectionsArray);
+
+    $result = $trailController->getTrails($session);
+    $expectedResult = array(array($section1), 1);
+    $this->assertEquals($expectedResult, $result);
+
+    $section1 = new Section(11, 0, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
+    $section2 = new Section(11, 0, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
+    $section3 = new Section(11, 0, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
+
+    $sectionsArray = array($section1, $section2, $section3);
+    $session->set('currentSectionsArray', $sectionsArray);
+
+    $result = $trailController->getTrails($session);
+    $expectedResult = array(array($section1, $section2, $section3), 0);
+    $this->assertEquals($expectedResult, $result);
+
+    $section1 = new Section(1, 1, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
+    $section2 = new Section(2, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
+    $section3 = new Section(3, 4, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
+
+    $sectionsArray = array($section1, $section2, $section3);
+    $session->set('currentSectionsArray', $sectionsArray);
+
+    $result = $trailController->getTrails($session);
+    $expectedResult = array(array($section1, $section2, $section3), 17);
+    $this->assertEquals($expectedResult, $result);
+  }
 }
