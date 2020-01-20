@@ -43,55 +43,79 @@ class LoginController extends AbstractController
     $request = Request::createFromGlobals();
     $bEmail = false;
     $bPassword = false;
-
+    $tourist = null;
     //from post
     $email = $request->request->get('email');
     $password = $request->request->get('password');
 
+    [$bEmail, $tourist] = $this->checkEmail($email);
     //filtering
-    $emailF = filter_var($email, FILTER_SANITIZE_EMAIL);
     $passwordF = filter_var($password, FILTER_SANITIZE_STRING);
     
-    //check email
-    if($email==$emailF && filter_var($emailF, FILTER_VALIDATE_EMAIL)==true){
-      $repository = $this->getDoctrine()->getRepository(Tourist::class);
-      $tourist = $repository->findOneByLogin($emailF);
-      
-      if(!is_null($tourist)){
-        $bEmail = true;
-        
-        //check password
-        if($password==$passwordF && $tourist->getPassword() == $password){
-          $bPassword = true;
+    if($bEmail){  
+      //check password
+      if($password==$passwordF && $tourist->getPassword() == $password){
+        $bPassword = true;
           
-          //setting sessions parameters
-          $session = $this->get('session');
-          $session->start();
-          $session->set('id', $tourist->getIdTu());
-          $session->set('imie', $tourist->getFirstName());
-          $session->set('nazwisko', $tourist->getLastName());
-          $session->set('logged', true);
+        //setting sessions parameters
+        $session = $this->get('session');
+        $session->start();
+        $session->set('id', $tourist->getIdTu());
+        $session->set('imie', $tourist->getFirstName());
+        $session->set('nazwisko', $tourist->getLastName());
+        $session->set('logged', true);
 
-          return $this->redirect('book');
-          //return $this->forward('App\Controller\BookController::id', ['id' => $Tourist->getIdTu()]);
-        }    
-        else{
-          //password incorrect message
-          $this->addFlash(
-            'password',
-            'visible'
-          );
-        }
+        return $this->redirect('book');
+      }    
+      else{
+        //password incorrect message
+        $this->addFlash('password','visible');
       }
     }
     //email incorrect message
     if(!$bEmail){
-      $this->addFlash(
-        'email',
-        'visible'
-      );
+      $this->addFlash('email','visible');
     }
     return $this->render('login.html.twig', array('login' => $email));
-    //return new Response('<html><body>'.$email.'</body></html>');
+  }
+
+  /**
+   * @Route("/reset", methods={"POST"})
+   * @return void
+   */
+  public function reset()
+  {
+    $request = Request::createFromGlobals();
+    $bEmail = false;
+
+    $email = $request->request->get('email');
+    $tourist = null;
+
+    [$bEmail, $tourist] = $this->checkEmail($email);
+    if($bEmail){
+        $entityManager = $this->getDoctrine()->getManager();
+        $tourist->setPassword("password");
+        $entityManager->flush();
+        $this->addFlash('password','visible');
+      }    
+      else{
+        $this->addFlash('email','visible');
+      }
+    return $this->render('resetPassword.html.twig', array('login' => $email));
+  }
+
+  private function checkEmail($email)
+  {
+    $bEmail = false;
+    $emailF = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $tourist = null;
+    if($email==$emailF && filter_var($emailF, FILTER_VALIDATE_EMAIL)==true){
+      $repository = $this->getDoctrine()->getRepository(Tourist::class);
+      $tourist = $repository->findOneByLogin($emailF);
+      if(!is_null($tourist)){
+        $bEmail = true;
+      }
+    }
+    return [$bEmail, $tourist];
   }
 }
