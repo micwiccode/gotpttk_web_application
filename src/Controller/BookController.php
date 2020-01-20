@@ -42,24 +42,10 @@ class BookController extends AbstractController
 
     foreach($trails as $trail){
       $sumPoints+=$trail->getSumOfPointsGOT();
-      //$sectionsTrail = $this->getDoctrine()->getRepository(SectionTrail::class)->findByIdT($trail->getIdT());
-      //foreach($sectionsTrail as $sectionTrail){
-        //$sumPoints += $sectionTrail->getIdS()->getPointsGOT();
-      //}
     }
 
     return $this->render('book.html.twig', [
       'imie' => $imie, 'nazwisko' => $nazwisko, 'logged' => $logged, 'degree' => $degreeName, 'points' => $sumPoints
     ]);
   }
-  /*public function id($id)
-  {
-    $repository = $this->getDoctrine()->getRepository(Turysta::class);
-    $turysta = $repository->findOneByIdTu($id);
-    
-    return $this->render('book.html.twig', [
-      'imie' => $turysta->getImie(), 
-      'nazwisko' => $turysta->getNazwisko()
-      ]);
-  }*/
 }

@@ -1,24 +1,41 @@
 <?php
+  namespace App\Controller;
+  use Symfony\Component\Routing\Annotation\Route;
+  use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+  use Symfony\Component\HttpFoundation\Session\SessionInterface;
+  use Symfony\Component\HttpFoundation\Response;
+  use Symfony\Component\HttpFoundation\Request;
+  use App\Repository\TouristRepository;
+  use App\Entity\Tourist;
+  use Symfony\Component\HttpFoundation\Session\Session;
 
-namespace App\Controller;
+  class ProgramController extends AbstractController {
+  /**
+    * @Route("/")
+   * @param SessionInterface $session
+   * @return void
+   */
+  public function index(SessionInterface $session)
+  {
+    $logged = $session->get('logged');
+    return $this->render('index.html.twig', array('logged' => $logged));
+  }
 
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use App\Repository\TouristRepository;
-use App\Entity\Tourist;
+  /**
+   * @Route("/alert")
+   * @return void
+   */
+  public function alert()
+  {
+    return $this->render('alert.html.twig');
+  }
 
-use Symfony\Component\HttpFoundation\Session\Session;
 
-
-class LoginController extends AbstractController
-{
   /**
    * @Route("/login", name="login")
    * @return void
    */
-  public function index()
+  public function login()
   {
     $session = $this->get('session');
     $session->clear();
@@ -119,3 +136,4 @@ class LoginController extends AbstractController
     return [$bEmail, $tourist];
   }
 }
+
