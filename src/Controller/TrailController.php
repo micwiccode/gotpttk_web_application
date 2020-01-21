@@ -170,7 +170,7 @@ class TrailController extends AbstractController
   }
 
   /**
-   * Meethod checkes if date input is valid
+   * Method checkes if date input is valid
    * 
    * @Route("/createTrail_check", methods={"POST"})
    * @param SessionInterface $session
@@ -239,7 +239,7 @@ class TrailController extends AbstractController
   }
 
   /**
-   * Method checkes if trail is valid
+   * Method checkes if trail is valid wheater there is no 2 the same sections
    *
    * @param SessionInterface $session
    * @return boolean

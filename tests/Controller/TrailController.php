@@ -84,6 +84,11 @@ class Trail extends TestCase
     $this->assertEquals(false, $result);
   }
 
+  /**
+   * Test for getTrails() method
+   *
+   * @return void
+   */
   public function testGetTrails()
   {
     $trailController = new TrailController();
