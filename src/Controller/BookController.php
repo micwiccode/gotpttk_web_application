@@ -8,6 +8,7 @@ use App\Entity\Tourist;
 use App\Entity\Trail;
 use App\Entity\SectionTrail;
 use App\Entity\BookDegree;
+use App\Entity\Book;
 use App\Entity\Degree;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -29,6 +30,7 @@ class BookController extends AbstractController
     }
     $idB = $this->getDoctrine()->getRepository(Tourist::class)->findOneByIdTu($session->get('id'))->getIdB();
     $session->set('idB', $idB);
+    $book = $this->getDoctrine()->getRepository(Book::class)->findOneByIdB($idB);
     $bookDegrees = $this->getDoctrine()->getRepository(BookDegree::class)->findByIdB($idB);
 
     $degree = new Degree(0,0);
@@ -42,6 +44,11 @@ class BookController extends AbstractController
 
     foreach($trails as $trail){
       $sumPoints+=$trail->getSumOfPointsGOT();
+    }
+    if($book->getNumberOfPoints()!=$sumPoints){
+      $entityManager = $this->getDoctrine()->getManager();
+      $book->setNumberOfPoints($sumPoints);
+      $entityManager->flush();
     }
 
     return $this->render('book.html.twig', [

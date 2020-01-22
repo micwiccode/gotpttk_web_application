@@ -135,5 +135,14 @@
     }
     return [$bEmail, $tourist];
   }
+
+  public function checkEmailString($email)
+  {
+    $bEmail = false;
+    $emailF = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $tourist = null;
+    if($email==$emailF && filter_var($emailF, FILTER_VALIDATE_EMAIL)==true){return true;}
+    return false;
+  }
 }
 

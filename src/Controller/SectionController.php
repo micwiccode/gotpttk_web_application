@@ -249,5 +249,9 @@ class SectionController extends AbstractController
                       'idGroup'=>$idG, 'idS'=>$idS, 'idSP'=>$idSP, 'idEP'=>$idEP));
   }
 
+  public function countPoints($length, $height)
+  {
+    return floor($length/1000) + floor($height/100);
+  }
 
 }
