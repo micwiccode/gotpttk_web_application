@@ -76,7 +76,7 @@ class SectionController extends AbstractController
   }
 
   /**
-   * Method renders view for /addSection with request from createTrail
+   * Method renders view for /addSection with request GET from createTrail
    * 
    * @Route("/addSection", methods={"GET"})
    * @param SessionInterface $session
@@ -86,7 +86,6 @@ class SectionController extends AbstractController
   {
     $logged = $session->get('logged');
     $mountainGroups = $this->getDoctrine()->getRepository(MountainGroup::class)->findAll();
-    $request = Request::createFromGlobals();
     return $this->render('addSection.html.twig', array('mountainGroups' => $mountainGroups, 'logged' => $logged));
   }
 

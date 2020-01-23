@@ -26,8 +26,7 @@
 						{% endfor %}
 					</select>
 				</div>
-<a id='error_message' class="form__err" name="emailErr"
-
+				<a id='error_message' class="form__err" name="emailErr" style="visibility: {% for message in app.flashes('noNameError') %}
 										{{message}}{% endfor %};">Powyższe pole jest wymagane do wyszukania odcinka</a>
 				<input type="submit" value="Wyszukaj" class="button form__input__btn">
 			</form>
