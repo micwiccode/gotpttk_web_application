@@ -279,6 +279,10 @@ class TrailController extends AbstractController
     $session->remove('currentSectionsArray');
     $session->remove('modyfying');
     $logged = $session->get('logged');
+    $logged = $session->get('logged');
+    if(!isset($logged)){
+      return $this->redirectToRoute('login');
+    }
     $idB = $session->get('idB');
 
     $doctrine = $this->getDoctrine();

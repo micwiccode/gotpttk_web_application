@@ -267,6 +267,23 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO tourist (firstName, lastName, login, password, idB) 
                         VALUES ("Jan", "Kowalski", "jan@kowalski.com", "jan", 2)');
 
+        $this->addSql('INSERT INTO book_degree (idB, idD) VALUES (3,1)');
+        $this->addSql('INSERT INTO book (idB, numberOfPoints) VALUES (3,0)');
+        $this->addSql('INSERT INTO tourist (firstName, lastName, login, password, idB) 
+                        VALUES ("Anna", "Żyżyńska", "anna@gmail.com", "Anna1234", 3)');
+        
+            
+        $this->addSql('INSERT INTO book_degree (idB, idD) VALUES (4,1)');
+                $this->addSql('INSERT INTO book (idB, numberOfPoints) VALUES (4,200)');
+                $this->addSql('INSERT INTO tourist (firstName, lastName, login, password, idB) 
+                                VALUES ("Krystyna", "Kabacik-Kluz", "kk@k.com.pl", "qwerty", 4)');
+        
+            
+        $this->addSql('INSERT INTO book_degree (idB, idD) VALUES (5,1)');
+                $this->addSql('INSERT INTO book (idB, numberOfPoints) VALUES (5,8)');
+                $this->addSql('INSERT INTO tourist (firstName, lastName, login, password, idB) 
+                                VALUES ("Andrzej", "Dabień", "asdf123@o2.pl", "haslo", 5)');
+
         $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, hasSectionsOutOfBase, isVerified, trailDate, idBook) VALUES (1,10,false,false,"2020-01-01",1)');
         $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, hasSectionsOutOfBase, isVerified, trailDate, idBook) VALUES (2,5,false,false,"2020-01-04",1)');
         $this->addSql('INSERT INTO trail(idT, sumOfPointsGOT, hasSectionsOutOfBase, isVerified, idBook) VALUES(3,7,false,false,2)');
