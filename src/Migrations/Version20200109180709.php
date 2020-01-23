@@ -84,7 +84,34 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO point (idP, name) VALUES (45, "Przełęcz Liliowe (1952 m)")');
         $this->addSql('INSERT INTO point (idP, name) VALUES (46, "Zielony Staw Gąsienicowy (1672 m)")');
         $this->addSql('INSERT INTO point (idP, name) VALUES (47, "Kościelec (2156m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (48, "Schronisko PTTK na Hali Ornak (1100 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (49, "Polana Pisana")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (50, "Smreczyński Staw")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (51, "Schronisko PTTK na Hali Kondratowej")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (52, "Hotel PTTK Kalatówki")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (53, "Przełęcz pod Kopą Kondracką")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (54, "Palenica Kościeliska (1183 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (55, "Kir")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (56, "Gronik")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (57, "Butorowy Wierch (1160 m)")');
 
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (7,55,54,3)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,56,54,3)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,54,55,3)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,54,56,3)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (7,55,57,3)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,54,57,3)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,57,55,3)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,57,54,3)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,49,48,2)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,50,48,2)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,48,49,2)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,48,50,2)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,52,51,2)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (3,53,51,2)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,51,52,2)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (9,51,53,2)');
+        
 
         $this->addSql('SET FOREIGN_KEY_CHECKS=0');
 
@@ -95,7 +122,6 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,6,1,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,1,2,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,2,1,1)');
-        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,2,2,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,2,3,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (2,3,2,1)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,7,3,1)');

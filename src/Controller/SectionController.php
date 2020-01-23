@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class SectionController extends AbstractController
 {
   /**
+   * Method renders a main view for /findSection with groups
+   * 
    * @Route("/findSection", name="findSection")
    * @param SessionInterface $session
    * @return void
@@ -26,11 +28,13 @@ class SectionController extends AbstractController
   }
 
   /**
+   * Method renders a view for /findSection for certain group
+   * 
    * @Route("/findSection_group{id}")
    * @param Int $id
    * @param SessionInterface $session
    * @return void
-  */
+   */
   public function findSectionIdGroup(int $id, SessionInterface $session)
   {
     $logged = $session->get('logged');
@@ -50,6 +54,8 @@ class SectionController extends AbstractController
   }
 
   /**
+   * Method renders view for finding result
+   * 
    * @Route("/findSection_result", methods={"POST"})
    * @param SessionInterface $session
    * @return void
@@ -70,6 +76,8 @@ class SectionController extends AbstractController
   }
 
   /**
+   * Method renders view for /addSection with request GET from createTrail
+   * 
    * @Route("/addSection", methods={"GET"})
    * @param SessionInterface $session
    * @return void
@@ -78,16 +86,17 @@ class SectionController extends AbstractController
   {
     $logged = $session->get('logged');
     $mountainGroups = $this->getDoctrine()->getRepository(MountainGroup::class)->findAll();
-    $request = Request::createFromGlobals();
     return $this->render('addSection.html.twig', array('mountainGroups' => $mountainGroups, 'logged' => $logged));
   }
 
   /**
+   * Method renders view for /addSection with request from createTrail for certain mountain group
+   * 
    * @Route("/addSection_group{id}")
-    * @param Int $id
-    * @param SessionInterface $session
-    * @return void
-  */
+   * @param Int $id
+   * @param SessionInterface $session
+   * @return void
+   */
   public function addSectionIdGroup(Int $id, SessionInterface $session)
   {
     $logged = $session->get('logged');
@@ -107,10 +116,12 @@ class SectionController extends AbstractController
   }
 
   /**
+   * Method renders view for /addSection with request from results of finding
+   * 
    * @Route("/addSection_result", methods={"POST"})
    * @param SessionInterface $session
    * @return void
-  */
+   */
   public function addSectionResult(SessionInterface $session)
   {
     $logged = $session->get('logged');
@@ -123,6 +134,8 @@ class SectionController extends AbstractController
   }
 
   /**
+   * Method get values from forms and creates new section
+   * 
    * @Route("/createOwnSection", methods="POST")
    * @param SessionInterface $session
    * @return void
@@ -161,6 +174,8 @@ class SectionController extends AbstractController
   }
 
   /**
+   * Methods renders a view for form of createing own section
+   * 
    * @Route("/createOwnSection")
    * @param SessionInterface $session
    * @param boolean $error
@@ -176,10 +191,10 @@ class SectionController extends AbstractController
     else return $this->render('createOwnSection.html.twig', array('mountainGroups' => $mountainGroups, 'logged' => $logged));
   }
 
-   /**
-   * @Route("/modifyOwnSectionSave", methods="POST")
-    * @param SessionInterface $session
-    * @return void
+  /**
+  * @Route("/modifyOwnSectionSave", methods="POST")
+  * @param SessionInterface $session
+  * @return void
   */
   public function modifyOwnSectionSave(SessionInterface $session)
   {
