@@ -8,8 +8,11 @@ class Section extends TestCase
 {
  public function testCountPoints()
   {
+    //utworzenie kontrolera odcinka
     $sectionController = new SectionController();
+    //wywołanie funkcji liczenia punktów dla podanej długości i przewyższenia
     $points = $sectionController->countPoints(1000,1000);
+    //assert
     $this->assertEquals(11, $points);
 
     $points = $sectionController->countPoints(99999,9999);
