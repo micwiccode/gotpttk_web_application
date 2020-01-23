@@ -36,4 +36,3 @@ To run test do ```php bin/phpunit```
 or ```php bin/phpunit/[path to the file you want to test]```
 
 eg. ```php bin/phpunit tests/Controller/TrailController.php```
-
