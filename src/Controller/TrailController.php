@@ -24,7 +24,7 @@ class TrailController extends AbstractController
    * @param SessionInterface $session
    * @return void
    */
-  public function createTrail(SessionInterface $session)
+  public function trailsView(SessionInterface $session)
   {
     $logged = $session->get('logged');
     $request = Request::createFromGlobals();
@@ -42,7 +42,7 @@ class TrailController extends AbstractController
     $sumOfPoints = 0;
     $date = $session->get('date');
     if (isset($idS)) {
-      if($idS == 0) [$sections, $sumOfPoints] = $this->getTrails($session);
+      if($idS == 0) [$sections, $sumOfPoints] = $this->getTralSections($session);
       else [$sections, $sumOfPoints] = $this->addNewSectionForTrail($idS, $session);
     } else if (isset($deleteSectionKey)) {
       [$sections, $sumOfPoints] = $this->deleteSection($deleteSectionKey, $session);
@@ -61,7 +61,7 @@ class TrailController extends AbstractController
    * @param SessionInterface $session
    * @return void
    */
-  public function index(SessionInterface $session)
+  public function createTrail(SessionInterface $session)
   {
     $logged = $session->get('logged');
     $session->remove('modyfying');
@@ -80,7 +80,7 @@ class TrailController extends AbstractController
     $logged = $session->get('logged');
     $idB = $session->get('idB');
     $date = $session->get('date');
-    [$sections, $sumOfPoints] = $this->getTrails($session);
+    [$sections, $sumOfPoints] = $this->getTralSections($session);
 
     if ($logged) {
       if ($this->isTrailValid($session)) {
@@ -170,7 +170,7 @@ class TrailController extends AbstractController
   }
 
   /**
-   * Meethod checkes if date input is valid
+   * Method checkes if date input is valid
    * 
    * @Route("/createTrail_check", methods={"POST"})
    * @param SessionInterface $session
@@ -182,7 +182,7 @@ class TrailController extends AbstractController
     $date = $request->request->get('date');
     if($date){
       $session->set('date', $date);
-      return $this->forward('App\Controller\TrailController::createTrail');
+      return $this->forward('App\Controller\TrailController::trailsView');
     }else{
       $this->addFlash('date','visible');
       return $this->redirectToRoute('createTrail');
@@ -203,7 +203,7 @@ class TrailController extends AbstractController
     $section = $entityManager->getRepository(Section::class)->find($idS);
     array_push($currentSectionsArray, $section);
     $session->set('currentSectionsArray', $currentSectionsArray);
-    return $this->getTrails($session);
+    return $this->getTralSections($session);
   }
 
   /**
@@ -219,7 +219,7 @@ class TrailController extends AbstractController
     unset($currentSectionsArray[$deleteSectionKey]);
     $currentSectionsArray = array_values($currentSectionsArray);
     $session->set('currentSectionsArray', $currentSectionsArray);
-    return $this->getTrails($session);
+    return $this->getTralSections($session);
   }
 
   /**
@@ -228,7 +228,7 @@ class TrailController extends AbstractController
    * @param SessionInterface $session
    * @return array
    */
-  public function getTrails(SessionInterface $session) :array
+  public function getTralSections(SessionInterface $session) :array
   {
     $currentSectionsArray = $session->get('currentSectionsArray');
     $sumOfPoints = 0;
@@ -239,7 +239,7 @@ class TrailController extends AbstractController
   }
 
   /**
-   * Method checkes if trail is valid
+   * Method checkes if trail is valid wheater there is no 2 the same sections
    *
    * @param SessionInterface $session
    * @return boolean
@@ -248,13 +248,23 @@ class TrailController extends AbstractController
   {
     $currentSectionsArray = $session->get('currentSectionsArray');
     $isValid = true;
-    if(empty($currentSectionsArray)) $isValid = false;
-    $sectionsIds = array();
-    foreach ($currentSectionsArray as $currentSection) {
-      array_push($sectionsIds, $currentSection->getIdS());
-    }
-    foreach (array_count_values($sectionsIds) as $id) {
-      if ($id > 1) $isValid = false;
+    if(!empty($currentSectionsArray)){
+      $sectionsIds = array();
+      $sectionsGroupsKey = array();
+      foreach ($currentSectionsArray as $currentSection) {
+        array_push($sectionsIds, $currentSection->getIdS());
+        array_push($sectionsGroupsKey, substr($currentSection->getIdG()->getGroupCode(), 0, 1));
+      }
+      foreach (array_count_values($sectionsIds) as $id) {
+        if ($id > 1) $isValid = false;
+      }
+      $firstSectionsGroupsKey = $sectionsGroupsKey[0];
+      foreach (($sectionsGroupsKey) as $key) {
+        if ($key != $firstSectionsGroupsKey) $isValid = false;
+      }
+    } 
+    else{
+      $isValid = false;
     }
     return $isValid;
   }
@@ -323,7 +333,7 @@ class TrailController extends AbstractController
         $session->set('ownSectionId', null);
       }
       if(isset($idS)){
-	      if($idS==0) [$sections,$sumOfPoint] = $this->getTrails($session);
+	      if($idS==0) [$sections,$sumOfPoint] = $this->getTralSections($session);
 	      else [$sections, $sumOfPoints] = $this->addNewSectionForTrail($idS, $session);
       }
       else if (isset($deleteSectionKey)) {
@@ -362,7 +372,7 @@ class TrailController extends AbstractController
    */
   public function modifyTrailSave(SessionInterface $session)
   {
-    [$sections, $sumOfPoints] = $this->getTrails($session);
+    [$sections, $sumOfPoints] = $this->getTralSections($session);
     $logged = $session->get('logged');
     $date = $session->get('date');
 
@@ -425,6 +435,6 @@ class TrailController extends AbstractController
       }
     }
     $session->set('currentSectionsArray', $currentSectionsArray);
-    return $this->getTrails($session);
+    return $this->getTralSections($session);
   }
 }

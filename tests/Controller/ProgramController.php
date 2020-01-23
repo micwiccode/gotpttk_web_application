@@ -8,9 +8,13 @@ class Program extends TestCase
 {
  public function testCheckEmailString()
   {
+    //przykładowy adres email
     $email = 'user@user.pl';
+    //utworzenie kontrolera programu
     $programController = new ProgramController();
+    //wywołanie funkcji sprawdzania poprawności adresu email
     $bEmail = $programController->checkEmailString($email);
+    //assert
     $this->assertEquals(true, $bEmail);
 
     $email = 'DROP DATABASE;';
