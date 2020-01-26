@@ -94,7 +94,11 @@ final class Version20200109180709 extends AbstractMigration
         $this->addSql('INSERT INTO point (idP, name) VALUES (55, "Kir")');
         $this->addSql('INSERT INTO point (idP, name) VALUES (56, "Gronik")');
         $this->addSql('INSERT INTO point (idP, name) VALUES (57, "Butorowy Wierch (1160 m)")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (58, "Bukowina Tatrzańska - Klin")');
+        $this->addSql('INSERT INTO point (idP, name) VALUES (59, "Bukowina Tatrzańska Dolna")');
 
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (4,58,59,3)');
+        $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,59,58,3)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (7,55,54,3)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (8,56,54,3)');
         $this->addSql('INSERT INTO section (pointsGOT, startPoint, endPoint, idG) VALUES (5,54,55,3)');

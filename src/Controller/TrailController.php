@@ -42,7 +42,7 @@ class TrailController extends AbstractController
     $sumOfPoints = 0;
     $date = $session->get('date');
     if (isset($idS)) {
-      if($idS == 0) [$sections, $sumOfPoints] = $this->getTralSections($session);
+      if($idS == 0) [$sections, $sumOfPoints] = $this->getTrailSections($session);
       else [$sections, $sumOfPoints] = $this->addNewSectionForTrail($idS, $session);
     } else if (isset($deleteSectionKey)) {
       [$sections, $sumOfPoints] = $this->deleteSection($deleteSectionKey, $session);
@@ -80,7 +80,7 @@ class TrailController extends AbstractController
     $logged = $session->get('logged');
     $idB = $session->get('idB');
     $date = $session->get('date');
-    [$sections, $sumOfPoints] = $this->getTralSections($session);
+    [$sections, $sumOfPoints] = $this->getTrailSections($session);
 
     if ($logged) {
       if ($this->isTrailValid($session)) {
@@ -203,7 +203,7 @@ class TrailController extends AbstractController
     $section = $entityManager->getRepository(Section::class)->find($idS);
     array_push($currentSectionsArray, $section);
     $session->set('currentSectionsArray', $currentSectionsArray);
-    return $this->getTralSections($session);
+    return $this->getTrailSections($session);
   }
 
   /**
@@ -219,7 +219,7 @@ class TrailController extends AbstractController
     unset($currentSectionsArray[$deleteSectionKey]);
     $currentSectionsArray = array_values($currentSectionsArray);
     $session->set('currentSectionsArray', $currentSectionsArray);
-    return $this->getTralSections($session);
+    return $this->getTrailSections($session);
   }
 
   /**
@@ -228,7 +228,7 @@ class TrailController extends AbstractController
    * @param SessionInterface $session
    * @return array
    */
-  public function getTralSections(SessionInterface $session) :array
+  public function getTrailSections(SessionInterface $session) :array
   {
     $currentSectionsArray = $session->get('currentSectionsArray');
     $sumOfPoints = 0;
@@ -333,7 +333,7 @@ class TrailController extends AbstractController
         $session->set('ownSectionId', null);
       }
       if(isset($idS)){
-	      if($idS==0) [$sections,$sumOfPoint] = $this->getTralSections($session);
+	      if($idS==0) [$sections,$sumOfPoint] = $this->getTrailSections($session);
 	      else [$sections, $sumOfPoints] = $this->addNewSectionForTrail($idS, $session);
       }
       else if (isset($deleteSectionKey)) {
@@ -372,7 +372,7 @@ class TrailController extends AbstractController
    */
   public function modifyTrailSave(SessionInterface $session)
   {
-    [$sections, $sumOfPoints] = $this->getTralSections($session);
+    [$sections, $sumOfPoints] = $this->getTrailSections($session);
     $logged = $session->get('logged');
     $date = $session->get('date');
 
@@ -435,6 +435,6 @@ class TrailController extends AbstractController
       }
     }
     $session->set('currentSectionsArray', $currentSectionsArray);
-    return $this->getTralSections($session);
+    return $this->getTrailSections($session);
   }
 }

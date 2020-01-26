@@ -73,27 +73,27 @@ class Trail extends TestCase
     $this->assertEquals(false, $result);
 
     //test 6
-    $section1 = new Section(15, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroupTatry2);
-    $section2 = new Section(15, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroupTatry2);
-    $section3 = new Section(16, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroupTatry2);
+    $section1 = new Section(15, 12, 120, 140, $startPoint, $endPoint, true, $mountainGroupTatry2);
+    $section2 = new Section(15, 12, 120, 1476, $startPoint, $endPoint, true, $mountainGroupTatry2);
+    $section3 = new Section(16, 12, 120, 560, $startPoint, $endPoint, true, $mountainGroupTatry2);
     $sectionsArray = array($section1, $section2, $section3);
     $session->set('currentSectionsArray', $sectionsArray);
     $result = $trailController->isTrailValid($session);
     $this->assertEquals(false, $result);
 
     //test 7
-    $section1 = new Section(10, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroupBeskid);
-    $section2 = new Section(99, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroupBeskid);
-    $section3 = new Section(10, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroupBeskid);
+    $section1 = new Section(10, 12, 120, 298, $startPoint, $endPoint, true, $mountainGroupBeskid);
+    $section2 = new Section(99, 12, 120, 267, $startPoint, $endPoint, true, $mountainGroupBeskid);
+    $section3 = new Section(10, 12, 120, 243, $startPoint, $endPoint, true, $mountainGroupBeskid);
     $sectionsArray = array($section1, $section2, $section3);
     $session->set('currentSectionsArray', $sectionsArray);
     $result = $trailController->isTrailValid($session);
     $this->assertEquals(false, $result);
 
     //test 8
-    $section1 = new Section(11, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroupBeskid);
-    $section2 = new Section(99, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroupBeskid);
-    $section3 = new Section(10, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroupBeskid);
+    $section1 = new Section(11, 16, 1450, 299, $startPoint, $endPoint, true, $mountainGroupBeskid);
+    $section2 = new Section(99, 12, 1010, 249, $startPoint, $endPoint, true, $mountainGroupBeskid);
+    $section3 = new Section(10, 14, 12200, 240, $startPoint, $endPoint, true, $mountainGroupBeskid);
     $sectionsArray = array($section1, $section2, $section3);
     $session->set('currentSectionsArray', $sectionsArray);
     $result = $trailController->isTrailValid($session);
@@ -121,7 +121,7 @@ class Trail extends TestCase
     //test 1
     $sectionsArray = array();
     $session->set('currentSectionsArray', $sectionsArray);
-    $result = $trailController->getTralSections($session);
+    $result = $trailController->getTrailSections($session);
     $expectedResult = array(array(), 0);
     $this->assertEquals($expectedResult, $result);
 
@@ -129,27 +129,27 @@ class Trail extends TestCase
     $section1 = new Section(1, 1, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
     $sectionsArray = array($section1);
     $session->set('currentSectionsArray', $sectionsArray);
-    $result = $trailController->getTralSections($session);
+    $result = $trailController->getTrailSections($session);
     $expectedResult = array(array($section1), 1);
     $this->assertEquals($expectedResult, $result);
 
     //test 3
-    $section1 = new Section(11, 0, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
-    $section2 = new Section(2, 0, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
-    $section3 = new Section(3, 0, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
+    $section1 = new Section(11, 0, 156, 240, $startPoint, $endPoint, true, $mountainGroup);
+    $section2 = new Section(2, 0, 450, 215, $startPoint, $endPoint, true, $mountainGroup);
+    $section3 = new Section(3, 0, 120, 540, $startPoint, $endPoint, true, $mountainGroup);
     $sectionsArray = array($section1, $section2, $section3);
     $session->set('currentSectionsArray', $sectionsArray);
-    $result = $trailController->getTralSections($session);
+    $result = $trailController->getTrailSections($session);
     $expectedResult = array(array($section1, $section2, $section3), 0);
     $this->assertEquals($expectedResult, $result);
 
     //test 4
-    $section1 = new Section(1, 1, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
-    $section2 = new Section(2, 12, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
-    $section3 = new Section(3, 4, 120, 240, $startPoint, $endPoint, true, $mountainGroup);
+    $section1 = new Section(1, 1, 110, 243, $startPoint, $endPoint, true, $mountainGroup);
+    $section2 = new Section(2, 12, 3456, 940, $startPoint, $endPoint, true, $mountainGroup);
+    $section3 = new Section(3, 4, 120, 249, $startPoint, $endPoint, true, $mountainGroup);
     $sectionsArray = array($section1, $section2, $section3);
     $session->set('currentSectionsArray', $sectionsArray);
-    $result = $trailController->getTralSections($session);
+    $result = $trailController->getTrailSections($session);
     $expectedResult = array(array($section1, $section2, $section3), 17);
     $this->assertEquals($expectedResult, $result);
 
@@ -159,7 +159,7 @@ class Trail extends TestCase
     $section3 = new Section(13, 0, 570, 240, $startPoint, $endPoint, true, $mountainGroup);
     $sectionsArray = array($section1, $section2, $section3);
     $session->set('currentSectionsArray', $sectionsArray);
-    $result = $trailController->getTralSections($session);
+    $result = $trailController->getTrailSections($session);
     $expectedResult = array(array($section1, $section2, $section3), 1);
     $this->assertEquals($expectedResult, $result);
   }
